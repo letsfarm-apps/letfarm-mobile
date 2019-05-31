@@ -57,7 +57,7 @@ class WelcomeScreen extends Component {
                     
                     <SegmentedControlTab
                         style={{borderRadius:10}}
-                        values={['Sign In', 'Sign Up']}
+                        values={['Login', 'Sign Up']}
                         selectedIndex={this.state.customStyleIndex}
                         onTabPress={this.handleCustomIndexSelect}
                         borderRadius={0}
