@@ -3,4 +3,4 @@
 #Install expo
 `npm install -g expo-cli
 #To start project
-Run expo start command
+Run `expo start` command
