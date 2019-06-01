@@ -1,18 +1,53 @@
-import React from 'react';
-import { StyleSheet, Text,FlatList,Platform,StatusBar} from 'react-native';
+
+import Diseases from './Diseases'
+import React, { Component } from 'react'
+import Practices from './Practices'
+import Questions from './Questions'
+import {Dimensions } from 'react-native'
 import HomeScreen from './HomeScreen'
-import {Container,Content,Header,Left,Icon, ListItem} from 'native-base'
+import MenuDrawer from './MenuDrawer'
 
 import {createDrawerNavigator,createAppContainer} from 'react-navigation'
+const WIDTH=Dimensions.get('window').width
+
+const DrawerConfig={
+  drawerWidth:WIDTH*0.83,
+  contentComponent:({navigation})=>{
+    return(
+      <MenuDrawer navigation={navigation }/>
+
+    );
+
+  }
+}
 
 const DrawerNavigatorExample = createDrawerNavigator({
-  //Drawer Optons and indexing
-  HomeScreen: { //Title
-    screen: HomeScreen,
+  HomeScreen : { //Title
+    screen: HomeScreen ,
     navigationOptions: {
-      drawerLabel: "Home Screen"
+      drawerLabel: "Home"
+    }
+  },
+  Questions : { //Title
+    screen: Questions ,
+    navigationOptions: {
+      drawerLabel: "Questions   & Answers"
+    }
+  },
+  Practices : { //Title
+    screen: Practices ,
+    navigationOptions: {
+      drawerLabel: "Farming Practices"
+    }
+  },
+  Diseases : { //Title
+    screen: Diseases ,
+    navigationOptions: {
+      drawerLabel: "Diseases"
     }
   },
   
-});
+},
+DrawerConfig
+);
 export default createAppContainer(DrawerNavigatorExample);
