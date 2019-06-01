@@ -7,11 +7,17 @@ import SignUpScreen from '../Screens/SignUpScreen'
 import SignInScreen from '../Screens/SignInScreen'
 import LaunchScreen from '../Screens/LaunchScreen'
 import HomeScreen from '../Screens/HomeScreen'
+import Questions from '../Screens/Questions'
+import Diseases from '../Screens/Diseases'
+import Practices from '../Screens/Practices'
 
 const AuthSwitchNavigator=createSwitchNavigator({
     Welcome:WelcomeScreen,
     SignIn:SignInScreen,
     SignUp:SignUpScreen,
+    Questions:Questions,
+    Diseases:Diseases,
+    Practices:Practices
     
     
     
