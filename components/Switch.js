@@ -25,7 +25,7 @@ const NavStack = createSwitchNavigator({
     },
     Auth:AuthSwitchNavigator,
     App:{
-        screen:HomeScreen
+        screen:LaunchScreen
     }
     
 

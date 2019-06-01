@@ -1,6 +1,6 @@
 # letfarm-mobile
 
-#Install expo
+### Install expo
 `npm install -g expo-cli
-#To start project
-Run expo start command
+### To start project
+Run `expo start` command
