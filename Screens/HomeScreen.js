@@ -24,7 +24,7 @@ class HomeScreen extends Component {
             <Container>
                <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
-                        <Icon onPress={()=>this.props.navigation.navigate('DrawerOpen')} name="md-menu" style={styles.leftIcon}/>
+                        <Icon onPress={()=>this.props.navigation.openDrawer()} name="md-menu" style={styles.leftIcon}/>
                     
                     </Left>
                     <Body>
