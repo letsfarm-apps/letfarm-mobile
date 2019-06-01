@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text,FlatList,Platform,StatusBar} from 'react-native';
 import HomeScreen from './HomeScreen'
-import {Container,Content,Header,Left,Right,Icon, ListItem} from 'native-base'
+import {Container,Content,Header,Left,Icon, ListItem} from 'native-base'
 
-import {DrawerNavigator} from 'react-navigation'
+import {createDrawerNavigator} from 'react-navigation'
 
-export default class App extends React.Component {
+ class LaunchScreen extends React.Component {
   render() {
     return (
       <AppDrawerNavigator/>
@@ -50,7 +50,7 @@ const CustomDrawerContentComponent=(props)=>{
 
 }
 
-const AppDrawerNavigator=new DrawerNavigator({
+const AppDrawerNavigator= createDrawerNavigator({
   HomeScreen: {screen:HomeScreen}
 },{
 drawerPosition:'left',
@@ -74,3 +74,6 @@ const styles = StyleSheet.create({
     })
 }
 });
+
+
+export default LaunchScreen
