@@ -70,47 +70,46 @@ class WelcomeScreen extends Component {
                     {this.state.customStyleIndex === 0
                                 &&
                       <Form style={{alignItems:'center'}}>
-                          <Item>
-                          <Input placeholder="Email" />
-                          </Item>
-                          <Item >
-                          <Input placeholder="Password" />
-                          </Item>
-                          <TouchableOpacity onPress={this.signIn}>
-                            <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
-                                <Text style={{color:'white'}}>Sign In</Text>
-                            </View>
-                          </TouchableOpacity>                                   
-                          <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
-                              <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
-                              <Text style={{color:'grey'}}>Or</Text>
-                              <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
-                          </View>
-                    </Form>
-                     
-                    }
-                    {this.state.customStyleIndex === 1
-                                &&                                                                            
-                      <Content>
-                        <Form style={{alignItems:'center'}}>s
-                          <Item>
-                            <Input placeholder="display name" />
-                          </Item>
-                        <Item >
-                          <Input placeholder="Password" />
+                        <Item>
+                        <Input placeholder="Email" />
                         </Item>
-                        <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
-                            <Text style={{color:'white'}}>Next</Text>
-                        </View>
+                        <Item >
+                        <Input placeholder="Password" />
+                        </Item>
+                        <TouchableOpacity onPress={this.signIn}>
+                          <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                              <Text style={{color:'white'}}>Sign In</Text>
+                          </View>
+                        </TouchableOpacity>                                   
                         <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
                             <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
                             <Text style={{color:'grey'}}>Or</Text>
                             <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
-
                         </View>
-                        </Form>
-                    </Content>
-                             
+                    </Form>
+                     
+                    }
+                    {this.state.customStyleIndex === 1
+                                &&       
+                      <Content>                                                                                  
+                        <Form style={{alignItems:'center'}}>s
+                          <Item>
+                              <Input placeholder="display name" />
+                            </Item>
+                          <Item >
+                          <Input placeholder="Password" />
+                          </Item>
+                          <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                              <Text style={{color:'white'}}>Next</Text>
+                          </View>
+                          <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
+                              <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
+                              <Text style={{color:'grey'}}>Or</Text>
+                              <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
+
+                          </View>
+                        </Form>      
+                      </Content>                  
                     }
 
                 </View>

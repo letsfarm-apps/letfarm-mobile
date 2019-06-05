@@ -1,6 +1,5 @@
-
 import Diseases from './Diseases'
-import React, { Component } from 'react'
+import React from 'react'
 import Practices from './Practices'
 import Questions from './Questions'
 import {Dimensions } from 'react-native'

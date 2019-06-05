@@ -1,73 +1,74 @@
 import React, { Component } from 'react'
-import {View,Text,ScrollView} from 'react-native'
-import {Icon,Item,Input,Picker,Content, Container,Card,CardItem} from 'native-base'
+import {View} from 'react-native'
+import {Icon,Input,Picker,Content, Container,Card} from 'native-base'
 import QuestionCard from './QuestionCard.js'
 
 class FarmerQuestions extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          navigation:this.props,
           selected: "key1",
           questions:[
               {
                 id:1,
                 content:"Why are my rabbits dying?",
                 asker:"Tony",
-                views:100,
-                count:30
+                views:120,
+                count:25
               },{
                 id:2,
                 content:"What do pigs eat to grow faster?",
                 asker:"cosmas",
-                views:100,
-                count:30
+                views:70,
+                count:50
               },
               {
                 id:3,
                 content:"How long to hens take to lay eggs?",
                 asker:"stephen",
-                views:100,
-                count:30
+                views:87,
+                count:90
               },
               {
                 id:4,
                 content:"Why are my rabbits dying?",
                 asker:"Tony",
-                views:100,
-                count:30
+                views:35,
+                count:3
               },{
                 id:6,
                 content:"What do pigs eat to grow faster?",
                 asker:"cosmas",
-                views:100,
-                count:30
+                views:90,
+                count:45
               },
               {
                 id:5,
                 content:"How long to hens take to lay eggs?",
                 asker:"stephen",
-                views:100,
-                count:30
+                views:67,
+                count:23
               },
               {
                 id:7,
                 content:"Why are my rabbits dying?",
                 asker:"Tony",
-                views:100,
-                count:30
+                views:987,
+                count:23
               },{
                 id:8,
                 content:"What do pigs eat to grow faster?",
                 asker:"cosmas",
-                views:100,
-                count:30
+                views:764,
+                count:34
               },
               {
                 id:9,
                 content:"How long to hens take to lay eggs?",
                 asker:"stephen",
-                views:100,
-                count:30
+                views:884,
+                count:23
               }
           ]
         };
@@ -78,15 +79,15 @@ class FarmerQuestions extends Component {
         });
       }
       renderQuestion(){
-        return  this.state.questions.map((question)=>(
-          
-            <QuestionCard key={question.id} singleQuestion={question} />
-            ));
+        return  this.state.questions.map((question)=>(    
+          <QuestionCard n key={question.id} singleQuestion={question} />
+        ));
 
       }
 
 
     render() {
+      
         return (
             <Container>
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginLeft:5,marginLeft:5,marginBottom:5}}>
@@ -108,8 +109,8 @@ class FarmerQuestions extends Component {
                     </Picker>
                     
                 </View>
-                <Content style={{marginTop:5,flex:1}}>
-                    <Card style={{marginLeft:5,marginRight:5}}>
+                <Content style={{flex:1}}>
+                    <Card style={{marginLeft:2,marginRight:2}}>
                         {this.renderQuestion()}
                     </Card>
                     
