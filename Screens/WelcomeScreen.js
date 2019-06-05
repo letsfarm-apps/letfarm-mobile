@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View,ImageBackground,StyleSheet,Text,Image,AsyncStorage,TouchableOpacity} from 'react-native'
-import {Input,Form,Item,Content} from 'native-base'
+import {Input,Form,Item} from 'native-base'
 import SegmentedControlTab from "react-native-segmented-control-tab";
 
 class WelcomeScreen extends Component {
@@ -91,7 +91,6 @@ class WelcomeScreen extends Component {
                     }
                     {this.state.customStyleIndex === 1
                                 &&                                                                            
-                      <Content>
                         <Form style={{alignItems:'center'}}>s
                           <Item>
                             <Input placeholder="display name" />
@@ -108,9 +107,7 @@ class WelcomeScreen extends Component {
                             <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
 
                         </View>
-                        </Form>
-                    </Content>
-                             
+                        </Form>                           
                     }
 
                 </View>
