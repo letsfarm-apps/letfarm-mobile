@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react'
 import {View,Text,StyleSheet,TouchableOpacity,Image,ScrollView,Dimensions} from 'react-native'
-const WIDTH=Dimensions.get('window').width
-const HEIGHT=Dimensions.get('window').height
 
 class MenuDrawer extends Component {
     navLink(nav,text){

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import {View,Text,SafeAreaView,Platform,StatusBar} from 'react-native'
+import {SafeAreaView,Platform,StatusBar} from 'react-native'
 import {createMaterialTopTabNavigator,createAppContainer} from 'react-navigation'
 import QuestionsHome from './QuestionsHome'
 import { Font} from "expo";
 import FarmerQuestions from './FarmerQuestions'
-import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
+import {Header,Icon,Left,Body,Title,Right} from 'native-base'
 
 
 class Questions extends Component {
@@ -54,7 +54,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         navigationOptions:{
             tabBarLabel:'Home',
             tabBarIcon:({tintColor})=>(
-                <Icon name="md-home" style={{color:'white'}} size={24}/>
+                <Icon name="ios-home" style={{color:tintColor}} size={24}/>
 
             )
         }
@@ -64,7 +64,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         navigationOptions:{
             tabBarLabel:'Questions',
             tabBarIcon:({tintColor})=>(
-                <Icon name="md-help" style={{color:'white'}} size={24}/>
+                <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
 
 
             )
@@ -75,12 +75,12 @@ const AppTabNavigator=createMaterialTopTabNavigator({
     initialRouteName:'QuestionsHome',
     tabBarOptions:{
         activeTintColor:'orange',
-        inactiveTintColor:'grey',
+        inactiveTintColor:'white',
         shifting:true,
         
         style:{
             backgroundColor:'#2980b9',
-            borderBottomWidth:0.5,
+            borderBottomWidth:1,
             borderBottomColor:'grey'
         },
         indicatorStyle:{
