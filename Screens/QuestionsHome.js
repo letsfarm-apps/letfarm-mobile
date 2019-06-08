@@ -21,7 +21,7 @@ class QuestionsHome extends Component {
                             <Text style={{fontWeight:'bold', fontSize:18}}>My Projects</Text>
                         </View>
                         <Right>
-                            <Text style={{fontWeight:'300',fontSize:10,marginRight:6}}>
+                            <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
                                 VIEW MORE
                             </Text>
                         </Right>                                                    
@@ -95,7 +95,7 @@ class QuestionsHome extends Component {
                                 <Text style={{fontWeight:'bold', fontSize:18}}>Diseases</Text>
                             </View>
                             <Right>
-                                <Text style={{fontWeight:'300',fontSize:10,marginRight:6}}>
+                                <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
                                     VIEW MORE
                                 </Text>
                             </Right>                                                    
@@ -166,7 +166,7 @@ class QuestionsHome extends Component {
                             <Text style={{fontWeight:'bold', fontSize:18}}>Practices</Text>
                         </View>
                         <Right>
-                            <Text style={{fontWeight:'300',fontSize:10,marginRight:6}}>
+                            <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
                                 VIEW MORE
                             </Text>
                         </Right>                                                    
