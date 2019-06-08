@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {withNavigation} from 'react-navigation'
 import {View,Text,} from 'react-native'
 
 
@@ -14,4 +13,4 @@ class Answers extends Component {
     }
 }
 
-export default withNavigation(Answers)
+export default Answers

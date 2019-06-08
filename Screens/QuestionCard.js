@@ -1,22 +1,20 @@
 import React, { Component } from 'react'
 import {View,Text,TouchableOpacity} from 'react-native'
 import {CardItem,Icon} from 'native-base'
-import {withNavigation} from 'react-navigation'
 class QuestionCard extends Component {
     constructor(props){
         super(props)
-        this.loadAnswers=this.loadAnswers.bind(this)
+        
     }
-    loadAnswers(){
-        this.props.navigation.navigate('Answers')
-    }
+    
      
     render() {
         const {content,asker,views,count}=this.props.singleQuestion;
+      
 
 
         return (
-            <TouchableOpacity onPress={this.loadAnswers}>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('Answers')}>
                  <CardItem style={{flexDirection:'row'}}>
                     <View style={{width:"15%"}}>
                         <Text>20+</Text>

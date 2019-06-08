@@ -91,8 +91,8 @@ class WelcomeScreen extends Component {
                     }
                     {this.state.customStyleIndex === 1
                                 &&       
-                      <Content>                                                                                  
-                        <Form style={{alignItems:'center'}}>s
+                                                                                                       
+                        <Form style={{alignItems:'center'}}>
                           <Item>
                               <Input placeholder="display name" />
                             </Item>
@@ -109,7 +109,7 @@ class WelcomeScreen extends Component {
 
                           </View>
                         </Form>      
-                      </Content>                  
+                                    
                     }
 
                 </View>

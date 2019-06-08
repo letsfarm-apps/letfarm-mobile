@@ -7,7 +7,7 @@ class FarmerQuestions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          navigation:this.props,
+          
           selected: "key1",
           questions:[
               {
@@ -79,8 +79,9 @@ class FarmerQuestions extends Component {
         });
       }
       renderQuestion(){
+        
         return  this.state.questions.map((question)=>(    
-          <QuestionCard n key={question.id} singleQuestion={question} />
+          <QuestionCard navigation={this.props.navigation} key={question.id} singleQuestion={question} />
         ));
 
       }
