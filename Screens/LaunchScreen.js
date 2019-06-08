@@ -2,7 +2,7 @@
 import Diseases from './Diseases'
 import React, { Component } from 'react'
 import Practices from './Practices'
-import Questions from './Questions'
+import Questions from './FarmerQuestions'
 import {Dimensions } from 'react-native'
 import HomeScreen from './HomeScreen'
 import MenuDrawer from './MenuDrawer'

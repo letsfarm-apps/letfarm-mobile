@@ -7,7 +7,7 @@ import SignUpScreen from '../Screens/SignUpScreen'
 import SignInScreen from '../Screens/SignInScreen'
 import LaunchScreen from '../Screens/LaunchScreen'
 import HomeScreen from '../Screens/HomeScreen'
-import Questions from '../Screens/Questions'
+import Questions from '../Screens/FarmerQuestions'
 import Diseases from '../Screens/Diseases'
 import Practices from '../Screens/Practices'
 

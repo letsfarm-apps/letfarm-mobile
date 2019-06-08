@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import {View,Text,SafeAreaView,Platform,StatusBar} from 'react-native'
+import {createMaterialTopTabNavigator,createAppContainer} from 'react-navigation'
+import QuestionsHome from './QuestionsHome'
 import { Font} from "expo";
-import {View,Text,Platform,StatusBar}from 'react-native'
-import {Icon,Header,Left,Body,Title,Right,Container,Content} from 'native-base'
-
+import FarmerQuestions from './FarmerQuestions'
+import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
 
 
 class HomeScreen extends Component {
     state = {
         fontLoaded: false,
+        title:'LetsFarm'
       }
     async componentWillMount() {
         await Font.loadAsync({
@@ -17,12 +20,11 @@ class HomeScreen extends Component {
         this.setState({ fontLoaded: true });
         
       }
-    
-   
+
     render() {
         return (
-            <Container>
-               <Header style={[styles.headerStyle,styles.androidHeader]}>
+          <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
+              <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
                         <Icon onPress={()=>this.props.navigation.openDrawer()} name="md-menu" style={styles.leftIcon}/>
                     
@@ -30,7 +32,7 @@ class HomeScreen extends Component {
                     <Body>
                         {
                             this.state.fontLoaded ? (
-                                <Title>letsfarm</Title>
+                                <Title>{this.state.title}</Title>
                             ) : null
                         }
                         
@@ -39,16 +41,68 @@ class HomeScreen extends Component {
                         <Icon name="search" style={styles.rightIcon}/>
                     </Right>
                 </Header>
-            </Container>
-        )
+             <NavContainer/>
+
+          </SafeAreaView>
+        );
     }
 }
+
+const AppTabNavigator=createMaterialTopTabNavigator({
+    QuestionsHome:{
+        screen:QuestionsHome,
+        navigationOptions:{
+            tabBarLabel:'Home',
+            tabBarIcon:({tintColor})=>(
+                <Icon name="md-home" style={{color:'white'}} size={24}/>
+
+            )
+        }
+    },
+    FarmerQuestions:{
+        screen:FarmerQuestions,
+        navigationOptions:{
+            tabBarLabel:'Questions',
+            tabBarIcon:({tintColor})=>(
+                <Icon name="md-help" style={{color:'white'}} size={24}/>
+
+
+            )
+        }
+    }
+
+},{
+    initialRouteName:'QuestionsHome',
+    tabBarOptions:{
+        activeTintColor:'orange',
+        inactiveTintColor:'grey',
+        shifting:true,
+        
+        style:{
+            backgroundColor:'#2980b9',
+            borderBottomWidth:0.5,
+            borderBottomColor:'grey'
+        },
+        indicatorStyle:{
+            height:0
+        },
+        showIcon:true,
+        showLabel:false,
+        activeBackgroundColor:'orange'
+        
+        
+    }
+    
+});
+
+const NavContainer = createAppContainer(AppTabNavigator);
+
 const styles={
     leftContent:{
         flexDirection:'row'
     },
     headerStyle:{
-        backgroundColor:"#3a455c",
+        backgroundColor:"#2980b9",
         height:90,
         borderBottomColor:"#757575"
     },
@@ -87,4 +141,5 @@ const styles={
     }
 }
 
-export default HomeScreen;
+
+export default HomeScreen

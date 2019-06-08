@@ -90,7 +90,7 @@ class FarmerQuestions extends Component {
         return (
             <Container>
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginLeft:5,marginLeft:5,marginBottom:5}}>
-                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between', marginLeft:5}}>                
+                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between', marginLeft:5,marginRight:5}}>                
                             <Icon name="search"  style={{fontSize:20,paddingTop:17}}/>
                             <Input style={{marginLeft:10}} placeholder="search..."/>                          
                     </View>
