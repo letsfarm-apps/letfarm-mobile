@@ -23,7 +23,7 @@ class HomeScreen extends Component {
 
     render() {
         return (
-          <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
+          <Container>
               <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
                         <Icon onPress={()=>this.props.navigation.openDrawer()} name="md-menu" style={styles.leftIcon}/>
@@ -43,7 +43,7 @@ class HomeScreen extends Component {
                 </Header>
              <NavContainer/>
 
-          </SafeAreaView>
+          </Container>
         );
     }
 }
@@ -54,7 +54,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         navigationOptions:{
             tabBarLabel:'Home',
             tabBarIcon:({tintColor})=>(
-                <Icon name="md-home" style={{color:'white'}} size={24}/>
+                <Icon name="md-home" style={{color:tintColor}} size={24}/>
 
             )
         }
@@ -64,7 +64,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         navigationOptions:{
             tabBarLabel:'Questions',
             tabBarIcon:({tintColor})=>(
-                <Icon name="md-help" style={{color:'white'}} size={24}/>
+                <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
 
 
             )
@@ -75,7 +75,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
     initialRouteName:'QuestionsHome',
     tabBarOptions:{
         activeTintColor:'orange',
-        inactiveTintColor:'grey',
+        inactiveTintColor:'white',
         shifting:true,
         
         style:{
