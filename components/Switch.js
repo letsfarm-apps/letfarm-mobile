@@ -1,12 +1,10 @@
 
-import { createSwitchNavigator, createAppContainer,createNavigationContainer} from 'react-navigation';
-import React from 'react';
+import { createSwitchNavigator, createAppContainer} from 'react-navigation';
 import AuthLoadingScreen from '../Screens/AuthLoadingScreen';
 import WelcomeScreen from '../Screens/WelcomeScreen'
 import SignUpScreen from '../Screens/SignUpScreen'
 import SignInScreen from '../Screens/SignInScreen'
 import LaunchScreen from '../Screens/LaunchScreen'
-import HomeScreen from '../Screens/HomeScreen'
 import Questions from '../Screens/FarmerQuestions'
 import Diseases from '../Screens/Diseases'
 import Practices from '../Screens/Practices'

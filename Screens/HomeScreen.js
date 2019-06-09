@@ -32,7 +32,7 @@ class HomeScreen extends Component {
                     <Body>
                         {
                             this.state.fontLoaded ? (
-                                <Title>{this.state.title}</Title>
+                                <Title style={{color:'white'}}>{this.state.title}</Title>
                             ) : null
                         }
                         
@@ -78,6 +78,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         inactiveTintColor:'white',
         shifting:true,
         
+        
         style:{
             backgroundColor:'#2980b9',
             borderBottomWidth:0.5,
@@ -89,6 +90,7 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         showIcon:true,
         showLabel:false,
         activeBackgroundColor:'orange'
+        
         
         
     }
