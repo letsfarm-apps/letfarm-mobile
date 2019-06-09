@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View,Text,SafeAreaView,Platform,StatusBar} from 'react-native'
+import {Platform,StatusBar} from 'react-native'
 import {createMaterialTopTabNavigator,createAppContainer} from 'react-navigation'
 import QuestionsHome from './QuestionsHome'
 import { Font} from "expo";
