@@ -8,6 +8,7 @@ import LaunchScreen from '../Screens/LaunchScreen'
 import Questions from '../Screens/FarmerQuestions'
 import Diseases from '../Screens/Diseases'
 import Practices from '../Screens/Practices'
+import PracticeDetails from '../Screens/PracticeDetails'
 
 const AuthSwitchNavigator=createSwitchNavigator({
     Welcome:WelcomeScreen,
@@ -15,7 +16,8 @@ const AuthSwitchNavigator=createSwitchNavigator({
     SignUp:SignUpScreen,
     Questions:Questions,
     Diseases:Diseases,
-    Practices:Practices
+    Practices:Practices,
+    PracticeDetails:PracticeDetails
     
     
     
@@ -31,6 +33,7 @@ const NavStack = createSwitchNavigator({
     App:{
         screen:LaunchScreen
     }
+
     
 
 });

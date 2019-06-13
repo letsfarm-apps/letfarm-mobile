@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Font} from "expo";
-import {View,Text,Platform,StatusBar,Image} from 'react-native'
+import {View,Text,Platform,StatusBar,Image,TouchableOpacity} from 'react-native'
 import {Card,CardItem,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
 
 class Practices extends Component {
@@ -45,8 +45,8 @@ class Practices extends Component {
                     
                 </View>
                 <Content style={{backgroundColor:'#f3f5f7'}}>
-                    
-                        <Card style={{marginLeft:5,marginRight:5}}>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('PracticeDetails')}>
+                         <Card style={{marginLeft:5,marginRight:5}}>
                             <View style={{paddingLeft:7,paddingTop:5}}>
                                   
                                   <Text style={{fontWeight:'500',fontSize:16}}>Feeding</Text>
@@ -67,6 +67,10 @@ class Practices extends Component {
                                 
                             </CardItem>
                         </Card>
+
+                    </TouchableOpacity>
+                    
+                       
                         <Card style={{marginLeft:5,marginRight:5,marginTop:0}}>
                             <View style={{paddingLeft:7,paddingTop:5}}>
                                   
