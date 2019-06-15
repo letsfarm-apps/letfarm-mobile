@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Font} from "expo";
-import {View,Text,Platform,StatusBar,Image} from 'react-native'
-import {Card,CardItem,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
+import {View,Text,Platform,StatusBar,TouchableOpacity} from 'react-native'
+import {Card,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
 
 class Diseases extends Component {
     state = {
@@ -46,15 +46,18 @@ class Diseases extends Component {
                 </View>
                 <Content>
                     <Card style={{marginLeft:5,marginRight:5}}>
-                       <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View> 
+                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('DiseaseDetails')}>
+                            <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
+                                <View style={{paddingHorizontal:5}}>
+                                    <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
+                                </View>
+                                <View style={{paddingHorizontal:5,paddingTop:5}}>
+                                    <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
+                                </View>
+                                
+                            </View> 
+                        </TouchableOpacity>
+                       
                         <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
                             <View style={{paddingHorizontal:5}}>
                                 <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>

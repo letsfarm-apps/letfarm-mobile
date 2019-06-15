@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {View,Text,ImageBackground,Platform,StatusBar,Image} from 'react-native'
-import { Font} from "expo";
+import {View,Text,Platform,StatusBar,Image} from 'react-native'
+
 
 import {Content,Container,Header,Left,Icon,Right} from 'native-base'
 
@@ -12,11 +12,12 @@ class PracticeDetails extends Component {
    
    
     render() {
+        const { goBack } = this.props.navigation;
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
-                        <Icon onPress={()=>this.props.navigation.navigate('Practices')} name="arrow-back" style={styles.leftIcon}/>
+                        <Icon onPress={()=>goBack()} name="arrow-back" style={styles.leftIcon}/>
                         
                     </Left>
                     <View style={{flex:1,marginLeft:5,justifyContent:'center'}}>

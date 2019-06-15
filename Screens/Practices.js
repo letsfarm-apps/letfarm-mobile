@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Font} from "expo";
 import {View,Text,Platform,StatusBar,Image,TouchableOpacity} from 'react-native'
 import {Card,CardItem,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
-
+import {withNavigation} from 'react-navigation'
 class Practices extends Component {
     state = {
         fontLoaded: false,
@@ -164,4 +164,4 @@ const styles={
     }
 }
 
-export default Practices
+export default withNavigation(Practices)
