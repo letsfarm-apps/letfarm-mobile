@@ -1,4 +1,3 @@
-
 import { createSwitchNavigator, createAppContainer} from 'react-navigation';
 import AuthLoadingScreen from '../Screens/AuthLoadingScreen';
 import WelcomeScreen from '../Screens/WelcomeScreen'
@@ -18,24 +17,16 @@ const AuthSwitchNavigator=createSwitchNavigator({
     Diseases:Diseases,
     Practices:Practices,
     PracticeDetails:PracticeDetails
-    
-    
-    
-    
-})
-
+});
 
 const NavStack = createSwitchNavigator({
-    AuthLoadingScreen: { 
+    AuthLoadingScreen: {
         screen: AuthLoadingScreen,
     },
     Auth:AuthSwitchNavigator,
     App:{
         screen:LaunchScreen
     }
-
-    
-
 });
 
 const Switch = createAppContainer(NavStack);
