@@ -9,6 +9,7 @@ import Questions from '../Screens/FarmerQuestions'
 import Diseases from '../Screens/Diseases'
 import Practices from '../Screens/Practices'
 import PracticeDetails from '../Screens/PracticeDetails'
+import DiseaseDetails from '../Screens/DiseaseDetails'
 
 const AuthSwitchNavigator=createSwitchNavigator({
     Welcome:WelcomeScreen,
@@ -17,7 +18,8 @@ const AuthSwitchNavigator=createSwitchNavigator({
     Questions:Questions,
     Diseases:Diseases,
     Practices:Practices,
-    PracticeDetails:PracticeDetails
+    PracticeDetails:PracticeDetails,
+    DiseaseDetails:DiseaseDetails
     
     
     
