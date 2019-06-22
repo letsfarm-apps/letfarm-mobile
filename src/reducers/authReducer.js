@@ -3,7 +3,8 @@ import {LOADING, LOGIN_ERROR, LOGIN_USER} from "../types";
 let initialState = {
     user: {},
     loginError:"",
-    isLoading: false
+    isLoading: false,
+    isLogged:false
 };
 
 const authReducer=(state=initialState,action)=>{
@@ -16,7 +17,8 @@ const authReducer=(state=initialState,action)=>{
         case LOGIN_USER:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                isLogged:true
             };
         case LOGIN_ERROR:
             return {
