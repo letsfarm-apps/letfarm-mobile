@@ -90,7 +90,7 @@ class WelcomeScreen extends Component {
                     <Text style={{color:"#ffffff", fontSize:21, marginBottom: 2}}>.io</Text>
                     </View>
                 </View>
-                <View  style={{width:'95%', borderRadius:20, backgroundColor:'white', paddingBottom: 20}}>
+                <View  style={{width:'95%', alignItems:'center', justifyContent:'center', borderRadius:20, backgroundColor:'white', paddingBottom: 20}}>
 
                     <SegmentedControlTab
                         style={{borderRadius:10}}
@@ -106,7 +106,7 @@ class WelcomeScreen extends Component {
                     />
                     {this.state.customStyleIndex === 0
                                 &&
-                      <Form style={{alignItems:'center'}}>
+                      <Form style={{alignItems:'center', paddingRight:15}}>
                           <Item>
                           <Input placeholder="Email" value={this.state.loginEmail} name='loginEmail' onChangeText={(email=>this.setState({loginEmail:email}))} />
                           </Item>
@@ -129,7 +129,7 @@ class WelcomeScreen extends Component {
                     }
                     {this.state.customStyleIndex === 1
                                 &&
-                        <Form style={{alignItems:'center'}}>
+                        <Form style={{alignItems:'center', paddingRight:15}}>
                           <Item>
                             <Input placeholder="display name" />
                           </Item>
