@@ -11,14 +11,15 @@ class HomeScreen extends Component {
     state = {
         fontLoaded: false,
         title:'LetsFarm'
-      }
+      };
+
     async componentWillMount() {
         await Font.loadAsync({
           Roboto: require("native-base/Fonts/Roboto.ttf"),
           Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
         });
         this.setState({ fontLoaded: true });
-        
+
       }
 
     render() {
@@ -27,7 +28,7 @@ class HomeScreen extends Component {
               <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
                         <Icon onPress={()=>this.props.navigation.openDrawer()} name="md-menu" style={styles.leftIcon}/>
-                    
+
                     </Left>
                     <Body>
                         {
@@ -35,7 +36,7 @@ class HomeScreen extends Component {
                                 <Title style={{color:'white'}}>{this.state.title}</Title>
                             ) : null
                         }
-                        
+
                     </Body>
                     <Right>
                         <Icon name="search" style={styles.rightIcon}/>
@@ -65,8 +66,6 @@ const AppTabNavigator=createMaterialTopTabNavigator({
             tabBarLabel:'Questions',
             tabBarIcon:({tintColor})=>(
                 <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
-
-
             )
         }
     }
@@ -77,8 +76,6 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         activeTintColor:'orange',
         inactiveTintColor:'white',
         shifting:true,
-        
-        
         style:{
             backgroundColor:'#2980b9',
             borderBottomWidth:0.5,
@@ -90,11 +87,11 @@ const AppTabNavigator=createMaterialTopTabNavigator({
         showIcon:true,
         showLabel:false,
         activeBackgroundColor:'orange'
-        
-        
-        
+
+
+
     }
-    
+
 });
 
 const NavContainer = createAppContainer(AppTabNavigator);
@@ -117,7 +114,7 @@ const styles={
         color:'white',
         marginRight: 10
     },
-    
+
     rightIcon:{
         color:"#fff"
 
@@ -132,7 +129,7 @@ const styles={
         flexDirection:'row',
         alignItems:'center',
         paddingHorizontal:5
-      
+
     },
     androidHeader:{
         ...Platform.select({

@@ -1,0 +1,11 @@
+const LOGIN_USER = 'LOGIN_USER';
+const SIGNUP = 'SIGN_UP_USER';
+const LOADING ='LOADING';
+const LOGIN_ERROR ='LOGIN_ERROR';
+
+export {
+    LOGIN_USER,
+    SIGNUP,
+    LOADING,
+    LOGIN_ERROR
+}
