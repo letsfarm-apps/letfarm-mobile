@@ -33,7 +33,7 @@ class QuestionReplies extends Component {
                 <View style={{flexDirection:'row',paddingTop:5,paddingHorizontal:5,height:"20%"}}>
                     <View style={{width:"20%",margin:3,justifyContent:'flex-start'}}>
                         <AntIcon name="up"  color="grey" size={22}/>
-                            <Text style={{fontSize:10}}>+13</Text>
+                            <Text style={{fontSize:12}}>+13</Text>
                         <AntIcon name="down"  color="grey" size={22}/>
                     </View>
                     <View style={{flex:1}}>
@@ -101,7 +101,7 @@ class QuestionReplies extends Component {
                     <View style={{flexDirection:'row',paddingTop:5,paddingHorizontal:5}}>
                         <View style={{width:"20%",margin:3,justifyContent:'flex-start'}}>
                             <AntIcon name="up"  color="grey" size={22}/>
-                            <Text style={{fontSize:10}}>+ 9</Text>
+                            <Text style={{fontSize:12}}>+ 9</Text>
                             <AntIcon name="down"  color="grey" size={22}/>
                         </View>
                         <Content style={{flex:1}}>
