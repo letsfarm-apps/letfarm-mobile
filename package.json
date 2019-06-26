@@ -13,10 +13,10 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-app-intro-slider": "^2.0.1",
     "react-native-segmented-control-tab": "^3.4.0",
-    "react-navigation": "^3.0.0"
+    "react-navigation": "^3.11.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.2.0"
   },
   "private": true
 }

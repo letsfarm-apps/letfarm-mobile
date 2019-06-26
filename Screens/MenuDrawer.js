@@ -37,6 +37,7 @@ class MenuDrawer extends Component {
                     {this.navLink('Diseases','Diseases')}
                     {this.navLink('Practices','Farming Practices')}
                     {this.navLink('Questions','Questions & Answers')}
+                    {this.navLink('QuestionReplies','Replies')}
 
                 </View>
                 </ScrollView>
