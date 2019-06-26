@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {View,Text,ScrollView} from 'react-native'
-import {Icon,Item,Input,Picker,Content, Container,Card,CardItem} from 'native-base'
+import {View} from 'react-native'
+import {Icon,Input,Picker,Content, Container,Card} from 'native-base'
 import QuestionCard from './QuestionCard.js'
 
 class FarmerQuestions extends Component {
@@ -80,7 +80,7 @@ class FarmerQuestions extends Component {
       renderQuestion(){
         return  this.state.questions.map((question)=>(
           
-            <QuestionCard key={question.id} singleQuestion={question} />
+            <QuestionCard  navigation={this.props.navigation} key={question.id} singleQuestion={question} />
             ));
 
       }

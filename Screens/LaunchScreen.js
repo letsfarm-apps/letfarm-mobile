@@ -5,6 +5,7 @@ import Practices from './Practices'
 import Questions from './FarmerQuestions'
 import {Dimensions } from 'react-native'
 import HomeScreen from './HomeScreen'
+import QuestionReplies from './QuestionReplies'
 import MenuDrawer from './MenuDrawer'
 
 import {createDrawerNavigator,createAppContainer} from 'react-navigation'
@@ -30,6 +31,12 @@ const DrawerNavigatorExample = createDrawerNavigator({
   },
   Questions : { //Title
     screen: Questions ,
+    navigationOptions: {
+      drawerLabel: "Questions   & Answers"
+    }
+  },
+  QuestionReplies : { //Title
+    screen: QuestionReplies ,
     navigationOptions: {
       drawerLabel: "Questions   & Answers"
     }

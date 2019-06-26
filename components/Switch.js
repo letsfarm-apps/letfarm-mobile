@@ -9,6 +9,7 @@ import Diseases from '../Screens/Diseases'
 import Practices from '../Screens/Practices'
 import PracticeDetails from '../Screens/PracticeDetails'
 import DiseaseDetails from '../Screens/DiseaseDetails'
+import QuestionReplies from '../Screens/QuestionReplies'
 
 const AuthSwitchNavigator=createSwitchNavigator({
     Welcome:WelcomeScreen,
@@ -18,10 +19,9 @@ const AuthSwitchNavigator=createSwitchNavigator({
     Diseases:Diseases,
     Practices:Practices,
     PracticeDetails:PracticeDetails,
-    DiseaseDetails:DiseaseDetails
-
-
-
+    DiseaseDetails:DiseaseDetails,
+    QuestionReplies:QuestionReplies
+    
 
 })
 

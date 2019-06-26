@@ -8,6 +8,10 @@ import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
 
 
 class HomeScreen extends Component {
+    constructor(props){
+        super(props);
+        
+    }
     state = {
         fontLoaded: false,
         title:'LetsFarm'
@@ -42,7 +46,7 @@ class HomeScreen extends Component {
                         <Icon name="search" style={styles.rightIcon}/>
                     </Right>
                 </Header>
-             <NavContainer/>
+             <NavContainer />
 
           </Container>
         );
