@@ -2,8 +2,12 @@ import React from 'react';
 import { StyleSheet,View,Text,Image} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import Switch from './components/Switch'
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import combineReducer from './src/reducers/combineReducer';
 
-
+const store = createStore(combineReducer, applyMiddleware(thunk));
 
 const slides = [
   {
@@ -39,25 +43,34 @@ class App extends React.Component {
         <Image style={styles.image} source={item.image} />
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.text}>{item.text}</Text>
-        
       </View >
     );
-  }
+  };
+
   _onDone = () => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     this.setState({ showRealApp: true });
-  }
+  };
+
   render() {
     if (this.state.showRealApp) {
-      return <Switch />;
+      return (
+          <Provider store={store}>
+            <Switch />
+          </Provider>
+          )
+        ;
     } else {
-      return <AppIntroSlider 
-      renderItem={this._renderItem} 
-      slides={slides} 
+      return (
+          <AppIntroSlider
+      renderItem={this._renderItem}
+      slides={slides}
       onDone={this._onDone}
       showPrevButton
-      showSkipButton/>;
+      showSkipButton/>
+
+      );
     }
   }
 }
@@ -76,8 +89,6 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     paddingHorizontal: 16,
-    
-  
   },
   title: {
     fontSize: 22,
