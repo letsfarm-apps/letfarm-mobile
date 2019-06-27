@@ -93,14 +93,10 @@ class WelcomeScreen extends Component {
                 <View  style={{width:'95%', alignItems:'center', justifyContent:'center', borderRadius:20, backgroundColor:'white', paddingBottom: 20}}>
 
                     <SegmentedControlTab
-                        style={{borderRadius:50+'%'}}
                         values={['Login', 'Sign Up']}
                         selectedIndex={this.state.customStyleIndex}
                         onTabPress={this.handleCustomIndexSelect}
-                        borderRadius={50+'%'}
-                        tabsContainerStyle={{ height: 50, backgroundColor: '#F2F2F2', borderRadius:'50%' }}
-                        firstTabStyle={{borderRadius:0, borderTopLeftRadius:'50%'}}
-                        lastTabStyle={{borderTopRightRadius:'50%'}}
+                        tabsContainerStyle={{ height: 50, backgroundColor: '#F2F2F2' }}
                         tabStyle={{ backgroundColor: '#F2F2F2', borderWidth: 0, borderColor: 'transparent' }}
                         activeTabStyle={{ backgroundColor: 'white', marginTop: 2 }}
                         tabTextStyle={{ color: '#444444', fontWeight: 'bold' }}
@@ -117,7 +113,7 @@ class WelcomeScreen extends Component {
                           </Item>
                           <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.loginError}{loginError?loginError:''}</Text>
                           <TouchableOpacity onPress={this.signIn}>
-                            <View style={{backgroundColor:'#2980b9',borderRadius:50+'%', width:100,height:35,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                            <View style={{backgroundColor:'#2980b9',borderRadius:50, width:100,height:35,alignItems:'center',justifyContent:'center',marginTop:10}}>
                                  {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>LogIn</Text>}
                             </View>
                           </TouchableOpacity>
@@ -138,7 +134,7 @@ class WelcomeScreen extends Component {
                         <Item >
                           <Input placeholder="Password" />
                         </Item>
-                        <View style={{backgroundColor:'#2980b9',borderRadius:50+'%', width:100,height:35,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                        <View style={{backgroundColor:'#2980b9',borderRadius:50, width:100,height:35,alignItems:'center',justifyContent:'center',marginTop:10}}>
                             <Text style={{color:'white'}}>Next</Text>
                         </View>
                         <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
