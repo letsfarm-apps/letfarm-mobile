@@ -6,6 +6,7 @@ import Questions from './FarmerQuestions'
 import {Dimensions } from 'react-native'
 import HomeScreen from './HomeScreen'
 import QuestionReplies from './QuestionReplies'
+import PostQuestion from './PostQuestion'
 import MenuDrawer from './MenuDrawer'
 
 import {createDrawerNavigator,createAppContainer} from 'react-navigation'

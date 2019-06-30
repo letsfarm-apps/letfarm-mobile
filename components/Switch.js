@@ -10,6 +10,7 @@ import Practices from '../Screens/Practices'
 import PracticeDetails from '../Screens/PracticeDetails'
 import DiseaseDetails from '../Screens/DiseaseDetails'
 import QuestionReplies from '../Screens/QuestionReplies'
+import PostQuestion from '../Screens/PostQuestion'
 
 const AuthSwitchNavigator=createSwitchNavigator({
     Welcome:WelcomeScreen,
@@ -20,7 +21,8 @@ const AuthSwitchNavigator=createSwitchNavigator({
     Practices:Practices,
     PracticeDetails:PracticeDetails,
     DiseaseDetails:DiseaseDetails,
-    QuestionReplies:QuestionReplies
+    QuestionReplies:QuestionReplies,
+    PostQuestion:PostQuestion
     
 
 })

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import {Platform,StatusBar} from 'react-native'
-import {createMaterialTopTabNavigator,createAppContainer} from 'react-navigation'
+import {createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import QuestionsHome from './QuestionsHome'
 import { Font} from "expo";
 import FarmerQuestions from './FarmerQuestions'
 import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
-
 
 class HomeScreen extends Component {
     constructor(props){
@@ -53,50 +52,33 @@ class HomeScreen extends Component {
     }
 }
 
-const AppTabNavigator=createMaterialTopTabNavigator({
-    QuestionsHome:{
-        screen:QuestionsHome,
-        navigationOptions:{
-            tabBarLabel:'Home',
-            tabBarIcon:({tintColor})=>(
-                <Icon name="md-home" style={{color:tintColor}} size={24}/>
-
-            )
+const AppTabNavigator=createBottomTabNavigator({
+    Home:QuestionsHome,
+    Questions:FarmerQuestions
+   },
+   {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        if (routeName === 'Home') {
+          return (
+            <Icon name="md-home" style={{color:tintColor}} size={24}/>
+          );
+        } else {
+          return (
+            <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
+          );
         }
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: '#FF6F00',
+      inactiveTintColor: '#263238',
+      showLabel:true
     },
-    FarmerQuestions:{
-        screen:FarmerQuestions,
-        navigationOptions:{
-            tabBarLabel:'Questions',
-            tabBarIcon:({tintColor})=>(
-                <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
-            )
-        }
-    }
-
-},{
-    initialRouteName:'QuestionsHome',
-    tabBarOptions:{
-        activeTintColor:'orange',
-        inactiveTintColor:'white',
-        shifting:true,
-        style:{
-            backgroundColor:'#2980b9',
-            borderBottomWidth:0.5,
-            borderBottomColor:'grey'
-        },
-        indicatorStyle:{
-            height:0
-        },
-        showIcon:true,
-        showLabel:false,
-        activeBackgroundColor:'orange'
-
-
-
-    }
-
-});
+  }
+   
+   );
 
 const NavContainer = createAppContainer(AppTabNavigator);
 
