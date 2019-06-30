@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {View,ImageBackground,StyleSheet,Text,Image,AsyncStorage,TouchableOpacity, SafeAreaView} from 'react-native'
-import {Input,Form,Item,Content} from 'native-base'
+import {Input,Form,Item} from 'native-base'
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { connect } from "react-redux";
 import {loginUser} from "../src/actions/authAction";
@@ -107,7 +107,7 @@ class WelcomeScreen extends Component {
                     {this.state.customStyleIndex === 0
                                 &&
                       <Form style={{alignItems:'center', paddingRight:15}}>
-                          <Item>
+                          <Item floatingLabel>
                           <Input placeholder="Email" value={this.state.loginEmail} name='loginEmail' onChangeText={(email=>this.setState({loginEmail:email}))} />
                           </Item>
                           <Item >
@@ -115,7 +115,7 @@ class WelcomeScreen extends Component {
                           </Item>
                           <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.loginError}{loginError?loginError:''}</Text>
                           <TouchableOpacity onPress={this.signIn}>
-                            <View style={{backgroundColor:'#2980b9',borderRadius:50+'%', width:100,height:35,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                            <View style={{backgroundColor:'#2980b9',borderRadius:50, width:100,height:35,alignItems:'center',justifyContent:'center',marginTop:10}}>
                                  {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>LogIn</Text>}
                             </View>
                           </TouchableOpacity>
