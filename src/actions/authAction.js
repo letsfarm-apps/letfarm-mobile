@@ -1,39 +1,15 @@
 import {LOGIN_USER, SIGNUP, LOADING, LOGIN_ERROR} from '../types';
 import axiosInstance from '../axios_setup';
 
-//actions
-const loginAction=(data)=>{
+const action=(type,payload)=>{
     return {
-        type:LOGIN_USER,
-        payload:data
+        type,
+        payload
     }
 };
-
-const loading=(data)=>{
-    return {
-        type:LOADING,
-        payload:data
-    }
-};
-
-const loginError=(data)=>{
-    return {
-        type:LOGIN_ERROR,
-        payload:data
-    }
-};
-
-const signupAction=(data)=>{
-    return {
-        type:SIGNUP,
-        payload:data
-    }
-};
-
-//action creators
 
 const loginUser=(data)=>async (dispatch)=>{
-    dispatch(loading(true));
+    dispatch(action(LOADING,true));
     return await axiosInstance.post('user/login/',data)
         .then((response)=>{
             if(response.status===201){
@@ -44,12 +20,12 @@ const loginUser=(data)=>async (dispatch)=>{
                     role,
                     token
                 };
-                dispatch(loginAction(user));
+                dispatch(action(LOGIN_USER,user));
             }
-            dispatch(loading(false));
+            dispatch(action(LOADING,false));
         }).catch((error)=>{
-        dispatch(loginError('login failed, check your email or password'));
-        dispatch(loading(false));
+        dispatch(action(LOGIN_ERROR,'login failed, check your email or password'));
+        dispatch(action(LOADING,false));
     })
 };
 
