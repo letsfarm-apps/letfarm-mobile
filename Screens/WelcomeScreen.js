@@ -3,8 +3,9 @@ import {View,ImageBackground,StyleSheet,Text,Image,AsyncStorage,TouchableOpacity
 import {Input,Form,Item} from 'native-base'
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { connect } from "react-redux";
-import {loginUser} from "../src/actions/authAction";
+import {loginUser, signupUser} from "../src/actions/authAction";
 import {DotsLoader} from 'react-native-indicator';
+
 
 class WelcomeScreen extends Component {
     constructor() {
@@ -19,8 +20,51 @@ class WelcomeScreen extends Component {
           loginEmail:'',
           loginPassword:'',
           loginError:'',
+          signupError:'',
+          signupEmail:'',
+          signupPassword:'',
+          sigupDisplayname:'',
+          signupName:'',
+          isNext:true,
         }
-    }
+    };
+    nextPane=async()=>{
+      const {signupEmail,signupName} = this.state;
+      if(signupEmail===""){
+        this.setState({signupError:'Please enter email'});
+      }else if(signupName===""){
+        this.setState({signupError:'Please enter name'});
+      }else{
+        this.setState({isNext:false});
+      }
+    };
+    signUp = async () =>{
+        const {signupEmail,signupName,signupPassword,sigupDisplayname} = this.state;
+        const data={
+            email:signupEmail,
+            password:signupPassword,
+            display_name:sigupDisplayname,
+            name:signupName,
+        };
+
+         if(signupPassword===""){
+            this.setState({signupError:'Please enter password'});
+        }else if(sigupDisplayname===""){
+          this.setState({signupError:'Please enter your display name'});
+        }else{
+            this.setState({signupError:''});
+            await this.props.signupUser(data);
+            if (this.props.isLogged){
+                const {token, display_name, email, role} = this.props.user;
+                await AsyncStorage.setItem('accessToken',token);
+                await AsyncStorage.setItem('display_name',display_name);
+                await AsyncStorage.setItem('email',email);
+                await AsyncStorage.setItem('role',role);
+                this.props.navigation.navigate('App')
+            }
+        }
+    };
+
     signIn = async () =>{
         const {loginEmail, loginPassword} = this.state;
         const data={
@@ -44,7 +88,7 @@ class WelcomeScreen extends Component {
                 this.props.navigation.navigate('App')
             }
         }
-    };
+      };
 
     handleSingleIndexSelect = (index: number) => {
           this.setState(prevState => ({ ...prevState, selectedIndex: index }))
@@ -74,7 +118,7 @@ class WelcomeScreen extends Component {
     };
 
     render() {
-        const {isLoading, loginError} = this.props;
+        const {isLoading, loginError,signupError} = this.props;
         return (
             <SafeAreaView
                 style={{flex:1}}
@@ -129,22 +173,51 @@ class WelcomeScreen extends Component {
                     }
                     {this.state.customStyleIndex === 1
                                 &&
-                        <Form style={{alignItems:'center', paddingRight:15}}>
-                          <Item>
-                            <Input placeholder="display name" />
-                          </Item>
-                        <Item >
-                          <Input placeholder="Password" />
-                        </Item>
-                        <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
-                            <Text style={{color:'white'}}>Next</Text>
-                        </View>
-                        <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
-                            <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
-                            <Text style={{color:'grey'}}>Or</Text>
-                            <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
-                        </View>
-                        </Form>
+                      <View style={{width:'100%'}}>
+                        {this.state.isNext?
+                              <Form style={{alignItems:'center', paddingRight:15}}>
+                                <Item>
+                                    <Input placeholder="Email" value={this.state.signupEmail} name='signupEmail' onChangeText={(useremail=>this.setState({signupEmail:useremail}))} />
+                                  </Item>
+                                <Item >
+                                  <Input placeholder="Name" value={this.state.signupName} name='signupName' onChangeText={(name=>this.setState({signupName:name}))} />
+                                </Item>
+                                <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.signupError}{signupError?signupError:''}</Text>
+                                <TouchableOpacity onPress={this.nextPane}>
+                                  <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                                      <Text style={{color:'white'}}>Next</Text>
+                                  </View>
+                                </TouchableOpacity>
+                                <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
+                                    <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
+                                    <Text style={{color:'grey'}}>Or</Text>
+                                    <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
+                                </View>
+                             </Form>
+                            :
+                              <Form style={{alignItems:'center', paddingRight:15}}>
+                                <Item>
+                                  <Input placeholder="Display name"  value={this.state.sigupDisplayname} name='signupDisplayname' onChangeText={(display_name=>this.setState({sigupDisplayname:display_name}))} />
+                                </Item>
+                                <Item >
+                                  <Input placeholder="Password" value={this.state.signupPassword} name='signupPassword' onChangeText={(password=>this.setState({signupPassword:password}))} />
+                                </Item>
+                                <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.signupError}{signupError?signupError:''}</Text>
+                                <TouchableOpacity onPress={this.signUp}>
+                                  <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
+                                    {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>signUp</Text>}
+                                  </View>
+                                </TouchableOpacity>
+                                <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
+                                    <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
+                                    <Text style={{color:'grey'}}>Or</Text>
+                                    <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
+                                </View>
+                              </Form>
+                        }
+
+                      </View>  
+                      
                     }
 
                 </View>
@@ -208,8 +281,14 @@ const mapStateToProps = (state) =>{
         user: state.auth.user,
         isLoading: state.auth.isLoading,
         loginError: state.auth.loginError,
+        signupError:state.auth.signupError,
         isLogged: state.auth.isLogged,
     }
 };
 
-export default connect(mapStateToProps,{loginUser})(WelcomeScreen);
+const mapDispatchToProps = {
+   loginUser,
+   signupUser
+
+};
+export default connect(mapStateToProps,mapDispatchToProps)(WelcomeScreen);
