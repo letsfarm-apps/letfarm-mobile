@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {Platform,StatusBar} from 'react-native'
+import {Platform,StatusBar,AsyncStorage} from 'react-native'
 import {createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import QuestionsHome from './QuestionsHome'
 import { Font} from "expo";
 import FarmerQuestions from './FarmerQuestions'
 import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
+import { logout} from '../src/utils/AuthUtil'
 
 class HomeScreen extends Component {
     constructor(props){
@@ -24,7 +25,7 @@ class HomeScreen extends Component {
         this.setState({ fontLoaded: true });
 
       }
-
+      
     render() {
         return (
           <Container>
@@ -42,7 +43,7 @@ class HomeScreen extends Component {
 
                     </Body>
                     <Right>
-                        <Icon name="search" style={styles.rightIcon}/>
+                        <Icon onPress={()=>logout(this.props)} name="search" style={styles.rightIcon}/>
                     </Right>
                 </Header>
              <NavContainer />

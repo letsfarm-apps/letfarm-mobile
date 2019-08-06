@@ -36,6 +36,7 @@ class WelcomeScreen extends Component {
         this.setState({signupError:'Please enter name'});
       }else{
         this.setState({isNext:false});
+        this.state.signupError='';
       }
     };
     signUp = async () =>{
@@ -54,6 +55,7 @@ class WelcomeScreen extends Component {
         }else{
             this.setState({signupError:''});
             await this.props.signupUser(data);
+            console.log(this.props.isLogged,'is logged')
             if (this.props.isLogged){
                 const {token, display_name, email, role} = this.props.user;
                 await AsyncStorage.setItem('accessToken',token);
@@ -200,12 +202,12 @@ class WelcomeScreen extends Component {
                                   <Input placeholder="Display name"  value={this.state.sigupDisplayname} name='signupDisplayname' onChangeText={(display_name=>this.setState({sigupDisplayname:display_name}))} />
                                 </Item>
                                 <Item >
-                                  <Input placeholder="Password" value={this.state.signupPassword} name='signupPassword' onChangeText={(password=>this.setState({signupPassword:password}))} />
+                                  <Input placeholder="Password"  secureTextEntry={true} value={this.state.signupPassword} name='signupPassword' onChangeText={(password=>this.setState({signupPassword:password}))} />
                                 </Item>
                                 <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.signupError}{signupError?signupError:''}</Text>
                                 <TouchableOpacity onPress={this.signUp}>
                                   <View style={{backgroundColor:'#2980b9',borderRadius:13, width:100,height:40,alignItems:'center',justifyContent:'center',marginTop:10}}>
-                                    {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>signUp</Text>}
+                                    {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>signup</Text>}
                                   </View>
                                 </TouchableOpacity>
                                 <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>

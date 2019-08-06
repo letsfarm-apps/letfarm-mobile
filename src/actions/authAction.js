@@ -12,7 +12,7 @@ const loginUser=(data)=>async (dispatch)=>{
     dispatch(action(LOADING,true));
     return await axiosInstance.post('user/login/',data)
         .then((response)=>{
-            if(response.status===201){
+            if(response.status===200){
                 const {email, display_name, role, token } = response.data;
                 const user={
                     email,
@@ -34,6 +34,7 @@ const signupUser=(data)=> async (dispatch)=> {
     dispatch(action(LOADING, true));
     return await axiosInstance.post('/user', data)
         .then(response => {
+            console.log(response.status)
             if (response.status === 201) {
                 const {email, display_name, role, token} = response.data;
                 const user = {
@@ -46,7 +47,7 @@ const signupUser=(data)=> async (dispatch)=> {
             }
             dispatch(action(LOADING, false))
         }).catch((error) => {
-            dispatch(action(SIGNUP_ERROR, 'login failed, check your email or password'));
+            dispatch(action(SIGNUP_ERROR, 'signup failed, check your email or password'));
             dispatch(action(LOADING, false));
         });
 };
