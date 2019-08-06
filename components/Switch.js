@@ -11,6 +11,7 @@ import PracticeDetails from '../Screens/PracticeDetails'
 import DiseaseDetails from '../Screens/DiseaseDetails'
 import QuestionReplies from '../Screens/QuestionReplies'
 import PostQuestion from '../Screens/PostQuestion'
+import HomeScreen from '../Screens/HomeScreen';
 
 const AuthSwitchNavigator=createSwitchNavigator({
     Welcome:WelcomeScreen,

@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import {View,ActivityIndicator,Text,AsyncStorage} from 'react-native'
+import {checkUser} from '../src/utils/AuthUtil'
 
 class AuthLoadingScreen extends Component {
-    constructor(){
-        super();
-        this.loadUser();
+    constructor(props){
+        super(props);
+        checkUser(props);
     }
-    loadUser=async()=>{
-        const bearerToken=await AsyncStorage.getItem('accsesToken');
-        this.props.navigation.navigate(bearerToken?'App':'Auth')
-    }
+    
     render() {
         return (
             <View style={{alignItems:'center',justifyContent:'center',flex:1}}>

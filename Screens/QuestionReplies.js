@@ -82,17 +82,16 @@ class QuestionReplies extends Component {
                         <Text style={{paddingLeft:5}}>9 Answers</Text>                       
                     </View>
                     <View style={{width:"30%",flexDirection:'row',paddingRight:5}}>
-                       
                         <Picker
-                        note
-                        mode="dropdown"
-                        selectedValue={this.state.selected}
-                        onValueChange={this.onValueChange.bind(this)}
-                        >
-                        <Picker.Item label="Votes" value="key0" />
-                        <Picker.Item label="Views" value="key1" />
-                        <Picker.Item label="Recent" value="key2" />
-                    </Picker>
+                            note
+                            mode="dropdown"
+                            selectedValue={this.state.selected}
+                            onValueChange={this.onValueChange.bind(this)}
+                            >
+                            <Picker.Item label="Votes" value="key0" />
+                            <Picker.Item label="Views" value="key1" />
+                            <Picker.Item label="Recent" value="key2" />
+                        </Picker>
                     </View>
                     
                     
