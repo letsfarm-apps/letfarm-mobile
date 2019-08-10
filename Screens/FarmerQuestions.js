@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {View} from 'react-native'
-import {Icon,Input,Picker,Content, Container,Card} from 'native-base'
+import {Input,Icon,Picker,Content, Container,Card} from 'native-base'
 import QuestionCard from './QuestionCard.js'
+
 
 class FarmerQuestions extends Component {
     constructor(props) {
@@ -114,9 +115,11 @@ class FarmerQuestions extends Component {
                     </Card>
                     
                 </Content>
+                
             </Container>
         );
     }
 }
+
 
 export default FarmerQuestions

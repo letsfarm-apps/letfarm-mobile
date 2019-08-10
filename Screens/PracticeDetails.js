@@ -17,7 +17,7 @@ class PracticeDetails extends Component {
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
-                        <Icon onPress={()=>goBack()} name="arrow-back" style={styles.leftIcon}/>
+                        <Icon onPress={()=>this.props.navigation.navigate("Practices")} name="arrow-back" style={styles.leftIcon}/>
                         
                     </Left>
                     <View style={{flex:1,marginLeft:5,justifyContent:'center'}}>

@@ -22,7 +22,7 @@ class QuestionReplies extends Component {
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
-                        <AntIcon onPress={()=>goBack()} name="left"  color="white" size={22}/>
+                        <AntIcon onPress={()=>this.props.navigation.navigate("App")} name="left"  color="white" size={22}/>
                         
                     </Left>
                     <View style={{flex:1,marginLeft:5,justifyContent:'center'}}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View,Text,Image,ScrollView} from 'react-native'
+import {View,Text,Image,ScrollView,TouchableOpacity} from 'react-native'
 import {Container,Content,Card,Icon,Input,CardItem,Left,Right} from 'native-base'
 
 class QuestionsHome extends Component {
@@ -21,9 +21,11 @@ class QuestionsHome extends Component {
                             <Text style={{fontWeight:'bold', fontSize:18}}>My Projects</Text>
                         </View>
                         <Right>
-                            <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
-                                VIEW MORE
-                            </Text>
+                            <TouchableOpacity>
+                                <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
+                                    VIEW MORE
+                                </Text>
+                            </TouchableOpacity>
                         </Right>                                                    
                     </View>
                     
@@ -95,9 +97,11 @@ class QuestionsHome extends Component {
                                 <Text style={{fontWeight:'bold', fontSize:18}}>Diseases</Text>
                             </View>
                             <Right>
-                                <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
-                                    VIEW MORE
-                                </Text>
+                                <TouchableOpacity onPress={()=>this.props.navigation.navigate("Diseases")}>
+                                    <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
+                                        VIEW MORE
+                                    </Text>
+                                </TouchableOpacity>
                             </Right>                                                    
                         </View>
                         
@@ -166,9 +170,11 @@ class QuestionsHome extends Component {
                             <Text style={{fontWeight:'bold', fontSize:18}}>Practices</Text>
                         </View>
                         <Right>
-                            <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
-                                VIEW MORE
-                            </Text>
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate("Practices")}>
+                                <Text style={{fontWeight:'400',fontSize:10,marginRight:6}}>
+                                    VIEW MORE
+                                </Text>
+                            </TouchableOpacity>
                         </Right>                                                    
                     </View>
                     
