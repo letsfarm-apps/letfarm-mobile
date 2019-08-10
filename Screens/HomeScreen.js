@@ -72,11 +72,7 @@ class HomeScreen extends Component {
 
                     </Body>
                     <Right>
-<<<<<<< HEAD
-                        <Icon onPress={()=>logout(this.props)} name="search" style={styles.rightIcon}/>
-=======
                         <Icon name="settings" style={styles.rightIcon}/>
->>>>>>> Navigation bug fix
                     </Right>
                 </Header>
              <NavContainer navigation={this.props.navigation} />
