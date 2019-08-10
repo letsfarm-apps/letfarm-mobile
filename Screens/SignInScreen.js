@@ -5,17 +5,12 @@ import {View,Button,Text,AsyncStorage} from 'react-native'
 
 class SignInScreen extends Component {
     signIn=async()=>{
-        //await AsyncStorage.setItem('accessToken','wamozo cosmas')
         const data={
             email:"test2@mail.com",
             password:"1234g"
         };
         console.log(data);
         await this.props.loginUser(data);
-        // if (this.props.isLogged){
-        //     console.log('user logged in');
-        //     this.props.navigation.navigate('App')
-        // }
     };
 
     render() {
