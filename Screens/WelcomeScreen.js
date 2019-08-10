@@ -55,13 +55,13 @@ class WelcomeScreen extends Component {
         }else{
             this.setState({signupError:''});
             await this.props.signupUser(data);
-            console.log(this.props.isLogged,'is logged')
+            
             if (this.props.isLogged){
-                const {token, display_name, email, role} = this.props.user;
+                console.log(this.props.user,' user');
+                const {token, display_name, email} = this.props.user;
                 await AsyncStorage.setItem('accessToken',token);
                 await AsyncStorage.setItem('display_name',display_name);
                 await AsyncStorage.setItem('email',email);
-                await AsyncStorage.setItem('role',role);
                 this.props.navigation.navigate('App')
             }
         }
@@ -86,17 +86,16 @@ class WelcomeScreen extends Component {
                 await AsyncStorage.setItem('accessToken',token);
                 await AsyncStorage.setItem('display_name',display_name);
                 await AsyncStorage.setItem('email',email);
-                await AsyncStorage.setItem('role',role);
                 this.props.navigation.navigate('App')
             }
         }
       };
 
-    handleSingleIndexSelect = (index: number) => {
+    handleSingleIndexSelect = (index) => {
           this.setState(prevState => ({ ...prevState, selectedIndex: index }))
     };
 
-    handleMultipleIndexSelect = (index: number) => {
+    handleMultipleIndexSelect = (index) => {
         const { selectedIndices } = this.state;
 
         if (selectedIndices.includes(index)) {
@@ -115,7 +114,7 @@ class WelcomeScreen extends Component {
           }
     };
 
-    handleCustomIndexSelect = (index: number) => {
+    handleCustomIndexSelect = (index) => {
           this.setState(prevState => ({ ...prevState, customStyleIndex: index }))
     };
 
@@ -154,10 +153,23 @@ class WelcomeScreen extends Component {
                                 &&
                       <Form style={{alignItems:'center', paddingRight:15}}>
                           <Item floatingLabel>
-                          <Input placeholder="Email" value={this.state.loginEmail} name='loginEmail' onChangeText={(email=>this.setState({loginEmail:email}))} />
+                          <Input 
+                            placeholder="Email" 
+                            value={this.state.loginEmail} 
+                            name='loginEmail' 
+                            autocorrect="off" 
+                            autocapitalize="none"
+                            onChangeText={(email=>this.setState({loginEmail:email}))} />
                           </Item>
                           <Item >
-                          <Input placeholder="Password" secureTextEntry={true} value={this.state.loginPassword} name='loginPassword' onChangeText={(password=>this.setState({loginPassword:password}))} />
+                          <Input 
+                            placeholder="Password"
+                            secureTextEntry={true} 
+                            value={this.state.loginPassword} 
+                            name='loginPassword' 
+                            autocorrect="off" 
+                            autocapitalize="none"
+                            onChangeText={(password=>this.setState({loginPassword:password}))} />
                           </Item>
                           <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.loginError}{loginError?loginError:''}</Text>
                           <TouchableOpacity onPress={this.signIn}>
@@ -179,10 +191,22 @@ class WelcomeScreen extends Component {
                         {this.state.isNext?
                               <Form style={{alignItems:'center', paddingRight:15}}>
                                 <Item>
-                                    <Input placeholder="Email" value={this.state.signupEmail} name='signupEmail' onChangeText={(useremail=>this.setState({signupEmail:useremail}))} />
+                                    <Input 
+                                      placeholder="Email" 
+                                      autocorrect="off" 
+                                      autocapitalize="none"
+                                      value={this.state.signupEmail} 
+                                      name='signupEmail' 
+                                      onChangeText={(useremail=>this.setState({signupEmail:useremail}))} />
                                   </Item>
                                 <Item >
-                                  <Input placeholder="Name" value={this.state.signupName} name='signupName' onChangeText={(name=>this.setState({signupName:name}))} />
+                                  <Input 
+                                    placeholder="Name" 
+                                    value={this.state.signupName} 
+                                    name='signupName' 
+                                    autocorrect="off" 
+                                    autocapitalize="none"
+                                    onChangeText={(name=>this.setState({signupName:name}))} />
                                 </Item>
                                 <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.signupError}{signupError?signupError:''}</Text>
                                 <TouchableOpacity onPress={this.nextPane}>
@@ -199,10 +223,23 @@ class WelcomeScreen extends Component {
                             :
                               <Form style={{alignItems:'center', paddingRight:15}}>
                                 <Item>
-                                  <Input placeholder="Display name"  value={this.state.sigupDisplayname} name='signupDisplayname' onChangeText={(display_name=>this.setState({sigupDisplayname:display_name}))} />
+                                  <Input 
+                                    placeholder="Display name" 
+                                    autocorrect="off" 
+                                    autocapitalize="none"
+                                    value={this.state.sigupDisplayname} 
+                                    name='signupDisplayname' 
+                                    onChangeText={(display_name=>this.setState({sigupDisplayname:display_name}))} />
                                 </Item>
                                 <Item >
-                                  <Input placeholder="Password"  secureTextEntry={true} value={this.state.signupPassword} name='signupPassword' onChangeText={(password=>this.setState({signupPassword:password}))} />
+                                  <Input 
+                                    placeholder="Password"  
+                                    secureTextEntry={true} 
+                                    value={this.state.signupPassword} 
+                                    name='signupPassword' 
+                                    autocorrect="off" 
+                                    autocapitalize="none"
+                                    onChangeText={(password=>this.setState({signupPassword:password}))} />
                                 </Item>
                                 <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.signupError}{signupError?signupError:''}</Text>
                                 <TouchableOpacity onPress={this.signUp}>

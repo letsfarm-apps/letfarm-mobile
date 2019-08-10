@@ -13,7 +13,8 @@ const loginUser=(data)=>async (dispatch)=>{
     return await axiosInstance.post('user/login/',data)
         .then((response)=>{
             if(response.status===200){
-                const {email, display_name, role, token } = response.data;
+                const {token } = response.data;
+                const {email, display_name, role} = response.data.user;
                 const user={
                     email,
                     display_name,
@@ -34,9 +35,9 @@ const signupUser=(data)=> async (dispatch)=> {
     dispatch(action(LOADING, true));
     return await axiosInstance.post('/user', data)
         .then(response => {
-            console.log(response.status)
             if (response.status === 201) {
-                const {email, display_name, role, token} = response.data;
+                const {token} = response.data;
+                const {email, display_name, role} = response.data.user;
                 const user = {
                     email,
                     display_name,
