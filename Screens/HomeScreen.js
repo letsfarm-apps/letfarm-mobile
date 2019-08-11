@@ -5,6 +5,7 @@ import QuestionsHome from './QuestionsHome'
 import { Font} from "expo";
 import FarmerQuestions from './FarmerQuestions'
 import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
+import AntIcon from 'react-native-vector-icons/AntDesign'
 import { logout} from '../src/utils/AuthUtil'
 
 
@@ -63,16 +64,14 @@ class HomeScreen extends Component {
         return (
           <Container>
               <Header style={[styles.headerStyle,styles.androidHeader]}>
-                    <Body>
-                        {
-                            this.state.fontLoaded ? (
-                                <Title style={{color:'white'}}>{this.state.title}</Title>
-                            ) : null
-                        }
-
-                    </Body>
+                    
+                     <Left>
+                     <Title style={{color:'white'}}>{this.state.title}</Title>
+                       </Left> 
+              
+                   
                     <Right>
-                        <Icon name="settings" style={styles.rightIcon}/>
+                        <AntIcon name="logout" style={styles.rightIcon} onPress={()=>logout(this.props)} size={20}/>
                     </Right>
                 </Header>
              <NavContainer navigation={this.props.navigation} />
@@ -104,8 +103,7 @@ const styles={
     },
 
     rightIcon:{
-        color:"#fff"
-
+        color:"#fff",
     },
     searchContent:{
         position:'absolute',
