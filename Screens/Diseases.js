@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Font} from "expo";
 import {View,Text,Platform,StatusBar,TouchableOpacity} from 'react-native'
+import AntIcon from 'react-native-vector-icons/AntDesign'
 import {Card,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
 
 class Diseases extends Component {
@@ -22,7 +23,7 @@ class Diseases extends Component {
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
-                        <Icon onPress={()=>this.props.navigation.openDrawer()} name="md-menu" style={styles.leftIcon}/>
+                        <AntIcon onPress={()=>this.props.navigation.navigate("App")} name="left"  color="white" size={22}/>
                     
                     </Left>
                     <Body>

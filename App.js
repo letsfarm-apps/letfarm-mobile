@@ -57,7 +57,7 @@ class App extends React.Component {
     if (this.state.showRealApp) {
       return (
           <Provider store={store}>
-            <Switch />
+            <Switch navigation={this.props.navigation} />
           </Provider>
           )
         ;

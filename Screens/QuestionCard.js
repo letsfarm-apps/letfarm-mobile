@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {View,Text,TouchableOpacity} from 'react-native'
-import FAIcon from 'react-native-vector-icons/FontAwesome'
+import {View,Text,TouchableOpacity,StyleSheet} from 'react-native'
 import {CardItem,Icon} from 'native-base'
+import { NavigationActions} from 'react-navigation';
 
 class QuestionCard extends Component {
     constructor(props){
@@ -9,13 +9,18 @@ class QuestionCard extends Component {
         
         
     }
-  
+    handlePress() {
+        this.props.navigation.dispatch(
+            NavigationActions.navigate({ routeName: "QuestionReplies" })
+           );
+      }
+    
     
     render() {
         const {content,asker,views,count}=this.props.singleQuestion;
 
         return (
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate('QuestionsReplies')}>
+            <TouchableOpacity onPress={()=> this.handlePress()}>
                 <CardItem style={{flexDirection:'row'}}>
                     <View style={{width:"15%"}}>
                         <Text>20+</Text>
