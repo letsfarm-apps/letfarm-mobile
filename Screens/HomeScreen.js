@@ -72,7 +72,7 @@ class HomeScreen extends Component {
 
                     </Body>
                     <Right>
-                        <Icon name="settings" style={styles.rightIcon}/>
+                        <Icon name="settings" style={styles.rightIcon} onPress={()=>logout(this.props)}/>
                     </Right>
                 </Header>
              <NavContainer navigation={this.props.navigation} />
