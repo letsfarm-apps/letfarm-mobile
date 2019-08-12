@@ -3,11 +3,11 @@ import {View,ImageBackground,Text,Image,AsyncStorage,TouchableOpacity, SafeAreaV
 import {Input,Form,Item} from 'native-base'
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import { connect } from "react-redux";
-import {loginUser, signupUser} from "../src/actions/authAction";
+import {loginUser, signupUser} from "../../redux/actions/authAction";
 import {DotsLoader} from 'react-native-indicator';
 
 
-class WelcomeScreen extends Component {
+class AuthScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,7 +55,7 @@ class WelcomeScreen extends Component {
         }else{
             this.setState({signupError:''});
             await this.props.signupUser(data);
-            
+
             if (this.props.isLogged){
                 console.log(this.props.user,' user');
                 const {token, display_name, email} = this.props.user;
@@ -126,7 +126,7 @@ class WelcomeScreen extends Component {
             >
                 <ImageBackground
                     style={{width: '100%', height: '100%',flex:1}}
-                    source={require('../assets/farming3.jpeg')}
+                    source={require('../../../assets/farming3.jpeg')}
                 >
                 <View style={{flex:1, height:'100%', width:'100%', alignItems:'center', backgroundColor:'rgba(0,0,0,0.5)'}}>
                 <View style={{height:'50%', alignItems:'center', justifyContent:'center'}}>
@@ -153,21 +153,21 @@ class WelcomeScreen extends Component {
                                 &&
                       <Form style={{alignItems:'center', paddingRight:15}}>
                           <Item floatingLabel>
-                          <Input 
-                            placeholder="Email" 
-                            value={this.state.loginEmail} 
-                            name='loginEmail' 
-                            autocorrect="off" 
+                          <Input
+                            placeholder="Email"
+                            value={this.state.loginEmail}
+                            name='loginEmail'
+                            autocorrect="off"
                             autocapitalize="none"
                             onChangeText={(email=>this.setState({loginEmail:email}))} />
                           </Item>
                           <Item >
-                          <Input 
+                          <Input
                             placeholder="Password"
-                            secureTextEntry={true} 
-                            value={this.state.loginPassword} 
-                            name='loginPassword' 
-                            autocorrect="off" 
+                            secureTextEntry={true}
+                            value={this.state.loginPassword}
+                            name='loginPassword'
+                            autocorrect="off"
                             autocapitalize="none"
                             onChangeText={(password=>this.setState({loginPassword:password}))} />
                           </Item>
@@ -178,9 +178,9 @@ class WelcomeScreen extends Component {
                             </View>
                           </TouchableOpacity>
                           <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
-                              <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
+                              <Image style={{height:30,width:30}} source={require('../../../assets/facebook.png')}/>
                               <Text style={{color:'grey'}}>Or</Text>
-                              <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
+                              <Image style={{height:30,width:30}} source={require('../../../assets/google-plus.png')}/>
                           </View>
                     </Form>
 
@@ -191,20 +191,20 @@ class WelcomeScreen extends Component {
                         {this.state.isNext?
                               <Form style={{alignItems:'center', paddingRight:15}}>
                                 <Item>
-                                    <Input 
-                                      placeholder="Email" 
-                                      autocorrect="off" 
+                                    <Input
+                                      placeholder="Email"
+                                      autocorrect="off"
                                       autocapitalize="none"
-                                      value={this.state.signupEmail} 
-                                      name='signupEmail' 
+                                      value={this.state.signupEmail}
+                                      name='signupEmail'
                                       onChangeText={(useremail=>this.setState({signupEmail:useremail}))} />
                                   </Item>
                                 <Item >
-                                  <Input 
-                                    placeholder="Name" 
-                                    value={this.state.signupName} 
-                                    name='signupName' 
-                                    autocorrect="off" 
+                                  <Input
+                                    placeholder="Name"
+                                    value={this.state.signupName}
+                                    name='signupName'
+                                    autocorrect="off"
                                     autocapitalize="none"
                                     onChangeText={(name=>this.setState({signupName:name}))} />
                                 </Item>
@@ -215,29 +215,29 @@ class WelcomeScreen extends Component {
                                   </View>
                                 </TouchableOpacity>
                                 <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
-                                    <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
+                                    <Image style={{height:30,width:30}} source={require('../../../assets/facebook.png')}/>
                                     <Text style={{color:'grey'}}>Or</Text>
-                                    <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
+                                    <Image style={{height:30,width:30}} source={require('../../../assets/google-plus.png')}/>
                                 </View>
                              </Form>
                             :
                               <Form style={{alignItems:'center', paddingRight:15}}>
                                 <Item>
-                                  <Input 
-                                    placeholder="Display name" 
-                                    autocorrect="off" 
+                                  <Input
+                                    placeholder="Display name"
+                                    autocorrect="off"
                                     autocapitalize="none"
-                                    value={this.state.sigupDisplayname} 
-                                    name='signupDisplayname' 
+                                    value={this.state.sigupDisplayname}
+                                    name='signupDisplayname'
                                     onChangeText={(display_name=>this.setState({sigupDisplayname:display_name}))} />
                                 </Item>
                                 <Item >
-                                  <Input 
-                                    placeholder="Password"  
-                                    secureTextEntry={true} 
-                                    value={this.state.signupPassword} 
-                                    name='signupPassword' 
-                                    autocorrect="off" 
+                                  <Input
+                                    placeholder="Password"
+                                    secureTextEntry={true}
+                                    value={this.state.signupPassword}
+                                    name='signupPassword'
+                                    autocorrect="off"
                                     autocapitalize="none"
                                     onChangeText={(password=>this.setState({signupPassword:password}))} />
                                 </Item>
@@ -248,15 +248,15 @@ class WelcomeScreen extends Component {
                                   </View>
                                 </TouchableOpacity>
                                 <View style={{flexDirection:'row',justifyContent:'space-evenly',width:200,marginTop:20}}>
-                                    <Image style={{height:30,width:30}} source={require('../assets/facebook.png')}/>
+                                    <Image style={{height:30,width:30}} source={require('../../../assets/facebook.png')}/>
                                     <Text style={{color:'grey'}}>Or</Text>
-                                    <Image style={{height:30,width:30}} source={require('../assets/google-plus.png')}/>
+                                    <Image style={{height:30,width:30}} source={require('../../../assets/google-plus.png')}/>
                                 </View>
                               </Form>
                         }
 
-                      </View>  
-                      
+                      </View>
+
                     }
 
                 </View>
@@ -282,4 +282,4 @@ const mapDispatchToProps = {
    signupUser
 
 };
-export default connect(mapStateToProps,mapDispatchToProps)(WelcomeScreen);
+export default connect(mapStateToProps,mapDispatchToProps)(AuthScreen);

@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet,View,Text,Image} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import Switch from './components/Switch'
+import Switch from './src/Switch'
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import combineReducer from './src/reducers/combineReducer';
+import combineReducer from './src/redux/reducers/combineReducer';
 
 const store = createStore(combineReducer, applyMiddleware(thunk));
 

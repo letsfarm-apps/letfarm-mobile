@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {loginUser} from "../src/actions/authAction";
+import {loginUser} from "../../redux/actions/authAction";
 import {View,Button,Text,AsyncStorage} from 'react-native'
 
 class SignInScreen extends Component {
