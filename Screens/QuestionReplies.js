@@ -11,7 +11,7 @@ class QuestionReplies extends Component {
           selected: "key1"
       }
     }
-    onValueChange() {
+    onValueChange(value) {
         this.setState({
           selected: value
         });
