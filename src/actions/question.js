@@ -14,7 +14,7 @@ const postNewQuestion=(data)=> async (dispatch)=> {
     return await axiosInstance.post('/questions', data)
         .then(response => {
             console.log(response.data)
-            if (response.status === 201) {
+            if (response.status === 200) {
                 const {body,title} = response.data;
                 const question = {
                     body,

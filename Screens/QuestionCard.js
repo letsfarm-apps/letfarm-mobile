@@ -36,10 +36,10 @@ class QuestionCard extends Component {
                         <View style={{marginLeft:3,marginRight:3,width:"70%"}}>
                             <Text>{content}</Text>
                             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                <View style={{backgroundColor:'#00cec9',borderRadius:16, width:90,height:30,alignItems:'center',justifyContent:'center',marginTop:5}}>
+                                <View style={{backgroundColor:'#00cec9',borderRadius:16, width:85,height:25,alignItems:'center',justifyContent:'center',marginTop:5}}>
                                     <Text style={{color:'white'}}>Rabbits</Text>
                                 </View>
-                                <View style={{backgroundColor:'#00cec9',borderRadius:16, width:90,height:30,alignItems:'center',justifyContent:'center',marginTop:5,marginBottom:5}}>
+                                <View style={{backgroundColor:'#00cec9',borderRadius:16, width:85,height:25,alignItems:'center',justifyContent:'center',marginTop:5,marginBottom:5}}>
                                     <Text style={{color:'white'}}>Diseases</Text>
                                 </View>
                                 

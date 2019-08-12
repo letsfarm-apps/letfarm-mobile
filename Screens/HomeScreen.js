@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import {Platform,StatusBar,AsyncStorage} from 'react-native'
+import {Platform,StatusBar,AsyncStorage,Text} from 'react-native'
 import {createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import QuestionsHome from './QuestionsHome'
-import { Font} from "expo";
 import FarmerQuestions from './FarmerQuestions'
 import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
 import AntIcon from 'react-native-vector-icons/AntDesign'
@@ -47,27 +46,18 @@ class HomeScreen extends Component {
     }
      static router = NavContainer.router;
     state = {
-        fontLoaded: false,
         title:'LetsFarm'
       };
 
-    async componentWillMount() {
-        await Font.loadAsync({
-          Roboto: require("native-base/Fonts/Roboto.ttf"),
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
-        });
-        this.setState({ fontLoaded: true });
-
-      }
-      
+              
     render() {
         return (
           <Container>
               <Header style={[styles.headerStyle,styles.androidHeader]}>
                     
                      <Left>
-                     <Title style={{color:'white'}}>{this.state.title}</Title>
-                       </Left> 
+                        <Text style={{color:'white',fontSize:16}}>{this.state.title}</Text>
+                      </Left> 
               
                    
                     <Right>

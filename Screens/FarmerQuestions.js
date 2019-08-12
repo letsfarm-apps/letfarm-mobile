@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import {View} from 'react-native'
+import {View,StyleSheet,Text,TouchableOpacity} from 'react-native'
 import {Input,Icon,Picker,Content, Container,Card} from 'native-base'
 import QuestionCard from './QuestionCard.js'
+//import Icon from 'react-native-vector-icons/Ionicons';
+import ActionButton from 'react-native-action-button';
 
 
 class FarmerQuestions extends Component {
@@ -73,7 +75,7 @@ class FarmerQuestions extends Component {
           ]
         };
       }
-      onValueChange(value: string) {
+      onValueChange(value) {
         this.setState({
           selected: value
         });
@@ -90,11 +92,13 @@ class FarmerQuestions extends Component {
     render() {
         return (
             <Container>
+                
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginLeft:5,marginRight:5,marginBottom:5}}>
                     <View style={{flex:1,flexDirection:'row',justifyContent:'space-between', marginLeft:5,marginRight:5}}>                
                             <Icon name="search"  style={{fontSize:20,paddingTop:17}}/>
                             <Input style={{marginLeft:10}} placeholder="search..."/>                          
                     </View>
+                    
                     <Picker
                         note
                         mode="dropdown"
@@ -109,17 +113,49 @@ class FarmerQuestions extends Component {
                     </Picker>
                     
                 </View>
-                <Content style={{marginTop:5,flex:1}}>
+               
+                   
+                <Content style={{marginTop:5}}>
+                
                     <Card style={{marginLeft:5,marginRight:5}}>
+                        
                         {this.renderQuestion()}
+                        
                     </Card>
+                   
                     
                 </Content>
+                <ActionButton onPress={()=>this.props.navigation.navigate("PostQuestion")} buttonColor="#2980b9">
+                </ActionButton>
+                
                 
             </Container>
         );
     }
 }
 
+const styles = StyleSheet.create({
+  fab:{
+    height: 50,
+    width: 50,
+    borderRadius: 200,
+    position: 'absolute',
+    bottom:0,
+    top:'35%',
+    right: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'#686cc3',
+  },
+  text:{
+    fontSize:30,
+    color:'white'
+  },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'black',
+  }
+});
 
 export default FarmerQuestions

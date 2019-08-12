@@ -20,9 +20,9 @@ class PostQuestion extends Component {
         };
 
         if(body===""){
-            this.setState({postError:'body required to login'});
+            this.setState({postError:'Please enter question body'});
         }else if(title===""){
-            this.setState({postError:'title required to login'});
+            this.setState({postError:'Please enter question title'});
         }else{
             this.setState({postError:''});
             await this.props.postNewQuestion(data);
@@ -37,16 +37,20 @@ class PostQuestion extends Component {
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
-                    <Left>
-                        <View style={{borderColor:'white',borderRadius:30,borderWidth:1,justifyContent:'center',alignItems:'center'}}>
-                            <Text style={{color:'white',padding:6}}>0%</Text>
+                    <Left style={{flexDirection:'row',flex:1}}>
+                        <Icon onPress={()=>this.props.navigation.navigate("App")} name="arrow-back" style={styles.leftIcon}/>
+                        <View style={{paddingHorizontal:10,justifyContent:'center',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                            <View style={{borderColor:'white',borderRadius:30,borderWidth:1,justifyContent:'center',alignItems:'center'}}>
+                                <Text style={{color:'white',padding:6}}>0%</Text>
+                            </View>
+                            <View style={{justifyContent:'center',alignItems:'center'}}>
+                                    <Text style={{color:'white',paddingHorizontal:5}}>New Question</Text>
+                            </View>
+                        
                         </View>
                         
                     </Left>
-                    <View style={{flex:1,justifyContent:'center'}}>
-                        <Text style={{color:'white'}}>New Question</Text>
-
-                    </View>
+                    
                 </Header>
                 <Content style={{flex:1,paddingTop:10}}>
                     <View style={{flexDirection:'row'}}>
@@ -106,17 +110,17 @@ class PostQuestion extends Component {
                         </View>
 
                     </View>
-                    <Text style={{marginTop:5, color:'#e74c3c', fontSize:14}}>{this.state.postError}{postError?postError:''}</Text>
+                    <Text style={{marginTop:15,paddingHorizontal:10 ,color:'#e74c3c', fontSize:14,textAlign:'center'}}>{this.state.postError}{postError?postError:''}</Text>
                     <View style={{flexDirection:'row',marginTop:25}}>                
                         <Left style={{flexDirection:'row',marginLeft:15}}>
                                 <Icon name="md-images" style={{color:'#2980b9'}} /> 
-                                <Text style={{paddingHorizontal:4}}> Insert</Text>
+                                <Text style={{paddingHorizontal:4,paddingTop:4,fontSize:16}}> Insert</Text>
                         </Left>     
                     
                         <Right>
                             <TouchableOpacity onPress={this.post}>
-                                <View style={{backgroundColor:'#2980b9', width:90,height:30,alignItems:'center',justifyContent:'center',marginRight:15}}>
-                                {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>Post</Text>}
+                                <View style={{backgroundColor:'#2980b9', width:90,height:35,borderRadius:5,alignItems:'center',justifyContent:'center',marginRight:15}}>
+                                    {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>Post</Text>}
                                 </View>
                             </TouchableOpacity>
                         </Right>                     
