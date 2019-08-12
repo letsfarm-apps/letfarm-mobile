@@ -3,7 +3,7 @@ import {View,Text,Platform,StatusBar,TouchableOpacity} from 'react-native'
 import {Content,Container,Header,Left,Right,Icon,Input,Form,Item,Label} from 'native-base'
 import {DotsLoader} from 'react-native-indicator';
 import { connect } from "react-redux";
-import {postNewQuestion} from '../src/actions/question';
+import {postNewQuestion} from '../../redux/actions/question';
 
 class PostQuestion extends Component {
     state={
@@ -31,7 +31,7 @@ class PostQuestion extends Component {
             }
         }
       };
-   
+
     render() {
         const {postError,isLoading } =this.props
         return (
@@ -46,11 +46,11 @@ class PostQuestion extends Component {
                             <View style={{justifyContent:'center',alignItems:'center'}}>
                                     <Text style={{color:'white',paddingHorizontal:5}}>New Question</Text>
                             </View>
-                        
+
                         </View>
-                        
+
                     </Left>
-                    
+
                 </Header>
                 <Content style={{flex:1,paddingTop:10}}>
                     <View style={{flexDirection:'row'}}>
@@ -60,7 +60,7 @@ class PostQuestion extends Component {
                             </View>
 
                         </View>
-                               
+
                         <View style={{flex:1,justifyContent:'center',paddingLeft:10}}>
                             <Form style={{paddingBottom:6}}>
                                 <Item floatingLabel>
@@ -79,7 +79,7 @@ class PostQuestion extends Component {
                             </View>
 
                         </View>
-                               
+
                         <View style={{flex:1,justifyContent:'center',paddingLeft:10}}>
                             <Form style={{paddingBottom:6}}>
                                 <Item floatingLabel>
@@ -98,7 +98,7 @@ class PostQuestion extends Component {
                             </View>
 
                         </View>
-                               
+
                         <View style={{flex:1,justifyContent:'center',paddingLeft:10}}>
                             <Form >
                                 <Item floatingLabel>
@@ -111,22 +111,22 @@ class PostQuestion extends Component {
 
                     </View>
                     <Text style={{marginTop:15,paddingHorizontal:10 ,color:'#e74c3c', fontSize:14,textAlign:'center'}}>{this.state.postError}{postError?postError:''}</Text>
-                    <View style={{flexDirection:'row',marginTop:25}}>                
+                    <View style={{flexDirection:'row',marginTop:25}}>
                         <Left style={{flexDirection:'row',marginLeft:15}}>
-                                <Icon name="md-images" style={{color:'#2980b9'}} /> 
+                                <Icon name="md-images" style={{color:'#2980b9'}} />
                                 <Text style={{paddingHorizontal:4,paddingTop:4,fontSize:16}}> Insert</Text>
-                        </Left>     
-                    
+                        </Left>
+
                         <Right>
                             <TouchableOpacity onPress={this.post}>
                                 <View style={{backgroundColor:'#2980b9', width:90,height:35,borderRadius:5,alignItems:'center',justifyContent:'center',marginRight:15}}>
                                     {isLoading?<DotsLoader color={'#ffffff'}/>:<Text style={{color:'white'}}>Post</Text>}
                                 </View>
                             </TouchableOpacity>
-                        </Right>                     
+                        </Right>
                     </View>
                 </Content>
-                
+
             </Container>
         )
     }
@@ -161,13 +161,13 @@ const styles={
         color:'white',
         marginRight: 10
     },
-    
+
     rightIcon:{
         color:"#fff"
 
     },
- 
-   
+
+
     androidHeader:{
         ...Platform.select({
             android:{
