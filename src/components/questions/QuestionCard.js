@@ -17,7 +17,7 @@ class QuestionCard extends Component {
     
     
     render() {
-        const {content,asker,views,count}=this.props.singleQuestion;
+        const {body,title,owner}=this.props.singleQuestion;
 
         return (
             <TouchableOpacity onPress={()=> this.handlePress()}>
@@ -25,7 +25,7 @@ class QuestionCard extends Component {
                     <View style={{width:"15%"}}>
                         <Text>20+</Text>
                         <View style={{flexDirection:'row'}}>
-                            <Text>{count}+
+                            <Text>20+
                             <Icon name="ios-chatbubbles" style={{color:'grey',fontSize:16}}/>
                             </Text>
                             
@@ -34,7 +34,7 @@ class QuestionCard extends Component {
                     </View>
                     <View style={{flex:1,borderBottomColor:'grey',borderBottomWidth:1,flexDirection:'row'}}>
                         <View style={{marginLeft:3,marginRight:3,width:"70%"}}>
-                            <Text>{content}</Text>
+                            <Text>{body}</Text>
                             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                                 <View style={{backgroundColor:'#00cec9',borderRadius:16, width:85,height:25,alignItems:'center',justifyContent:'center',marginTop:5}}>
                                     <Text style={{color:'white'}}>Rabbits</Text>
@@ -53,14 +53,14 @@ class QuestionCard extends Component {
                                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'flex-end'}}>
                                     <Text style={{marginLeft:0}}>
                                     <Icon name="eye" style={{color:'grey',fontSize:12}}/>{ }
-                                    {views}</Text>
+                                    100</Text>
                                 </View>
 
                             </View>
 
                         </View>
                         <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'center',marginLeft:5}}>
-                            <Text style={{padding:2}}>{asker}</Text>
+                            <Text style={{padding:2}}>{owner.name}</Text>
                             <Icon name="md-contact" style={{color:'grey'}} />
                         </View>
 

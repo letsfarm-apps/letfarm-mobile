@@ -65,7 +65,7 @@ class PostQuestion extends Component {
                             <Form style={{paddingBottom:6}}>
                                 <Item floatingLabel>
                                     <Label>Title</Label>
-                                    <Input style={{paddingTop:6}} value={this.state.title} name='title' onChangeText={(title=>this.setState({title:title}))} />
+                                    <Input style={{paddingTop:6}} multiline = {true} value={this.state.title} name='title' onChangeText={(title=>this.setState({title:title}))} />
                                 </Item>
                             </Form>
 
@@ -84,7 +84,7 @@ class PostQuestion extends Component {
                             <Form style={{paddingBottom:6}}>
                                 <Item floatingLabel>
                                     <Label>Body</Label>
-                                    <Input style={{paddingTop:6}} value={this.state.body} name='body' onChangeText={(body=>this.setState({body:body}))} />
+                                    <Input style={{paddingTop:6}} multiline = {true} value={this.state.body} name='body' onChangeText={(body=>this.setState({body:body}))} />
                                 </Item>
                             </Form>
 
@@ -103,7 +103,7 @@ class PostQuestion extends Component {
                             <Form >
                                 <Item floatingLabel>
                                     <Label>Relevant Tags</Label>
-                                    <Input style={{paddingTop:6}}/>
+                                    <Input multiline = {true} style={{paddingTop:6}}/>
                                 </Item>
                             </Form>
 
@@ -181,10 +181,10 @@ const styles={
 
 const mapStateToProps = (state) =>{
     return {
-        question: state.postQuestion.question,
-        isLoading: state.postQuestion.isLoading,
-        postError: state.postQuestion.postError,
-        isPosted: state.postQuestion.isPosted,
+        question: state.questions.question,
+        isLoading: state.questions.isLoading,
+        postError: state.questions.postError,
+        isPosted: state.questions.isPosted,
     }
 };
 

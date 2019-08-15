@@ -1,14 +1,17 @@
-import {LOADING, POST_QUESTION,POST_QUESTION_ERROR} from "../types";
+import {LOADING, POST_QUESTION,POST_QUESTION_ERROR,FETCH_QUESTIONS,FETCH_QUESTIONS_ERROR} from "../types";
 
 let initialState = {
     question: {},
+    questions:[],
+    fetchQtnError:"",
     postError:"",
     isPosted: false,
+    isQtnsFetched:false,
     isLoading: false,
 };
 
 
-const postQtnReducer=(state=initialState,action)=>{
+const questions=(state=initialState,action)=>{
     switch (action.type) {
         case LOADING:
             return {
@@ -27,10 +30,21 @@ const postQtnReducer=(state=initialState,action)=>{
                 ...state,
                 postError: action.payload
             };
+        case FETCH_QUESTIONS:
+            return {
+                ...state,
+                questions:action.payload,
+                isQtnsFetched:true
+            };
+        case FETCH_QUESTIONS_ERROR:
+            return {
+                ...state,
+                fetchQtnError:action.payload
+            }
         default:
             return state;
     }
 };
 
 
-export default postQtnReducer;
+export default questions;
