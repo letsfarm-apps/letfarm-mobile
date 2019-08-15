@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import {Platform,StatusBar,AsyncStorage,Text} from 'react-native'
+import {Platform,StatusBar,Text} from 'react-native'
 import {createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import QuestionsHome from '../questions/QuestionsHome'
 import FarmerQuestions from '../questions/FarmerQuestions'
-import {Header,Icon,Left,Body,Title,Right,Container} from 'native-base'
+import {Header,Icon,Left,Right,Container} from 'native-base'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import { logout} from '../../utils/AuthUtil'
-
 
 const AppTabNavigator=createBottomTabNavigator({
   Home:QuestionsHome,
@@ -36,19 +35,13 @@ const AppTabNavigator=createBottomTabNavigator({
 
  );
 
- const NavContainer = createAppContainer(AppTabNavigator);
-
+const NavContainer = createAppContainer(AppTabNavigator);
 
 class HomeScreen extends Component {
-    constructor(props){
-        super(props);
-
-    }
-     static router = NavContainer.router;
+    static router = NavContainer.router;
     state = {
         title:'LetsFarm'
-      };
-
+    };
 
     render() {
         return (
@@ -58,8 +51,6 @@ class HomeScreen extends Component {
                      <Left>
                         <Text style={{color:'white',fontSize:16}}>{this.state.title}</Text>
                       </Left>
-
-
                     <Right>
                         <AntIcon name="logout" style={styles.rightIcon} onPress={()=>logout(this.props)} size={20}/>
                     </Right>

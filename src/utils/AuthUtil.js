@@ -5,6 +5,18 @@ const checkUser=async (props)=>{
     props.navigation.navigate(bearerToken?'App':'Auth');
 };
 
+const  getToken = async () =>{
+    try {
+        const value = await AsyncStorage.getItem('accessToken');
+        if (value !== null) {
+            return value;
+        }
+    } catch (error) {
+        console.log('AsyncStorage Error: ' + error.message);
+    }
+    return ''
+};
+
 const logout=async (props)=>{
     await AsyncStorage.removeItem('accessToken');
     checkUser(props);
@@ -12,5 +24,6 @@ const logout=async (props)=>{
 
 export {
     checkUser,
-    logout
+    logout,
+    getToken
 }

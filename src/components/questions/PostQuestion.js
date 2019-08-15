@@ -10,7 +10,7 @@ class PostQuestion extends Component {
         body:'',
         title:'',
         postError:''
-    }
+    };
 
     post = async () =>{
         const {body, title} = this.state;
@@ -33,13 +33,13 @@ class PostQuestion extends Component {
       };
 
     render() {
-        const {postError,isLoading } =this.props
+        const {postError,isLoading } =this.props;
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left style={{flexDirection:'row',flex:1}}>
                         <Icon onPress={()=>this.props.navigation.navigate("App")} name="arrow-back" style={styles.leftIcon}/>
-                        <View style={{paddingHorizontal:10,justifyContent:'center',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                        <View style={{paddingHorizontal:10, flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                             <View style={{borderColor:'white',borderRadius:30,borderWidth:1,justifyContent:'center',alignItems:'center'}}>
                                 <Text style={{color:'white',padding:6}}>0%</Text>
                             </View>
@@ -175,9 +175,7 @@ const styles={
             }
         })
     }
-}
-
-
+};
 
 const mapStateToProps = (state) =>{
     return {

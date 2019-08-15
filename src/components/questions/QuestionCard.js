@@ -6,16 +6,14 @@ import { NavigationActions} from 'react-navigation';
 class QuestionCard extends Component {
     constructor(props){
         super(props);
-        
-        
     }
     handlePress() {
         this.props.navigation.dispatch(
             NavigationActions.navigate({ routeName: "QuestionReplies" })
            );
       }
-    
-    
+
+
     render() {
         const {body,title,owner}=this.props.singleQuestion;
 
@@ -28,8 +26,8 @@ class QuestionCard extends Component {
                             <Text>20+
                             <Icon name="ios-chatbubbles" style={{color:'grey',fontSize:16}}/>
                             </Text>
-                            
-                    
+
+
                         </View>
                     </View>
                     <View style={{flex:1,borderBottomColor:'grey',borderBottomWidth:1,flexDirection:'row'}}>
@@ -42,11 +40,11 @@ class QuestionCard extends Component {
                                 <View style={{backgroundColor:'#00cec9',borderRadius:16, width:85,height:25,alignItems:'center',justifyContent:'center',marginTop:5,marginBottom:5}}>
                                     <Text style={{color:'white'}}>Diseases</Text>
                                 </View>
-                                
+
                             </View>
                             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}> 
-                                    <Text style={{color:'blue', fontSize:12,marginLeft:0}}> 
+                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                                    <Text style={{color:'blue', fontSize:12,marginLeft:0}}>
                                     <Icon name="calendar" style={{color:'blue', fontSize:12}}/>{ }
                                     11 weeks</Text>
                                 </View>
@@ -68,7 +66,7 @@ class QuestionCard extends Component {
                 </CardItem>
 
             </TouchableOpacity>
-            
+
         );
     }
 }
