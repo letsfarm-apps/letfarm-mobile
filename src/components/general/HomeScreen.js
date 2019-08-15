@@ -38,6 +38,7 @@ const AppTabNavigator=createBottomTabNavigator({
 const NavContainer = createAppContainer(AppTabNavigator);
 
 class HomeScreen extends Component {
+    static router = NavContainer.router;
     state = {
         title:'LetsFarm'
     };
