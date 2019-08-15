@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Platform,StatusBar,Text} from 'react-native'
+import {Platform,StatusBar,Text, View} from 'react-native'
 import {createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import QuestionsHome from '../questions/QuestionsHome'
 import FarmerQuestions from '../questions/FarmerQuestions'
@@ -7,8 +7,15 @@ import {Header,Icon,Left,Right,Container} from 'native-base'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import { logout} from '../../utils/AuthUtil'
 
+const UserDashboard =()=>(
+    <View>
+        <Text>DashBoard</Text>
+    </View>
+);
+
 const AppTabNavigator=createBottomTabNavigator({
   Home:QuestionsHome,
+  Dashboard: UserDashboard,
   Questions:FarmerQuestions
  },
  {
@@ -19,10 +26,14 @@ const AppTabNavigator=createBottomTabNavigator({
         return (
           <Icon name="md-home" style={{color:tintColor}} size={24}/>
         );
-      } else {
+      } else if(routeName=== "Dashboard") {
         return (
-          <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
+          <AntIcon name="dashboard" style={{color:tintColor}} size={24}/>
         );
+      }else{
+          return (
+              <Icon name="chatboxes" style={{color:tintColor}} size={24}/>
+          );
       }
     },
   }),
