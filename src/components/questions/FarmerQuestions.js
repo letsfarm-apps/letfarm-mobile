@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import {View,StyleSheet,Text,TouchableOpacity} from 'react-native'
+import {View,ActivityIndicator} from 'react-native'
 import {Input,Icon,Picker,Content, Container,Card} from 'native-base'
 import QuestionCard from './QuestionCard.js'
-//import Icon from 'react-native-vector-icons/Ionicons';
 import ActionButton from 'react-native-action-button';
+import { connect } from "react-redux";
+import {fetchQuestions} from '../../redux/actions/question';
 
 
 class FarmerQuestions extends Component {
@@ -11,70 +12,23 @@ class FarmerQuestions extends Component {
         super(props);
         this.state = {
           selected: "key1",
-          questions:[
-              {
-                id:1,
-                content:"Why are my rabbits dying?",
-                asker:"Tony",
-                views:100,
-                count:30
-              },{
-                id:2,
-                content:"What do pigs eat to grow faster?",
-                asker:"cosmas",
-                views:100,
-                count:30
-              },
-              {
-                id:3,
-                content:"How long to hens take to lay eggs?",
-                asker:"stephen",
-                views:100,
-                count:30
-              },
-              {
-                id:4,
-                content:"Why are my rabbits dying?",
-                asker:"Tony",
-                views:100,
-                count:30
-              },{
-                id:6,
-                content:"What do pigs eat to grow faster?",
-                asker:"cosmas",
-                views:100,
-                count:30
-              },
-              {
-                id:5,
-                content:"How long to hens take to lay eggs?",
-                asker:"stephen",
-                views:100,
-                count:30
-              },
-              {
-                id:7,
-                content:"Why are my rabbits dying?",
-                asker:"Tony",
-                views:100,
-                count:30
-              },{
-                id:8,
-                content:"What do pigs eat to grow faster?",
-                asker:"cosmas",
-                views:100,
-                count:30
-              },
-              {
-                id:9,
-                content:"How long to hens take to lay eggs?",
-                asker:"stephen",
-                views:100,
-                count:30
-              }
-          ]
+          questions:[]
         };
       }
+
+      componentDidMount(){
+        this.fetch();
+      }
+      fetch = async () =>{
+            await this.props.fetchQuestions();
+            if (this.props.isQtnsFetched){
+                this.setState({questions:this.props.questions})
+            }
+        
+      };
+
+
+
       onValueChange(value) {
         this.setState({
           selected: value
@@ -90,11 +44,12 @@ class FarmerQuestions extends Component {
 
 
     render() {
+      const {fetchQtnError,isQtnsFetched,isLoading} =this.props
         return (
             <Container>
                 
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginLeft:5,marginRight:5,marginBottom:5}}>
-                    <View style={{flex:1,flexDirection:'row',justifyContent:'space-between', marginLeft:5,marginRight:5}}>                
+                    <View style={{flexDirection:'row',width:'75%',justifyContent:'space-between', marginLeft:5,marginRight:5}}>                
                             <Icon name="search"  style={{fontSize:20,paddingTop:17}}/>
                             <Input style={{marginLeft:10}} placeholder="search..."/>                          
                     </View>
@@ -103,7 +58,7 @@ class FarmerQuestions extends Component {
                         note
                         mode="dropdown"
                         
-                        style={{ alignItems:'flex-end',width:"20%"}}
+                        style={{ alignItems:'flex-end',flex:1}}
                         selectedValue={this.state.selected}
                         onValueChange={this.onValueChange.bind(this)}
                         >
@@ -116,12 +71,17 @@ class FarmerQuestions extends Component {
                
                    
                 <Content style={{marginTop:5}}>
-                
+                  {isLoading?
+                    <ActivityIndicator style={{marginTop:10}} />
+                  :
                     <Card style={{marginLeft:5,marginRight:5}}>
                         
                         {this.renderQuestion()}
                         
                     </Card>
+                  }
+                
+                    
                    
                     
                 </Content>
@@ -134,28 +94,15 @@ class FarmerQuestions extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-  fab:{
-    height: 50,
-    width: 50,
-    borderRadius: 200,
-    position: 'absolute',
-    bottom:0,
-    top:'35%',
-    right: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:'#686cc3',
-  },
-  text:{
-    fontSize:30,
-    color:'white'
-  },
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'black',
-  }
-});
 
-export default FarmerQuestions
+const mapStateToProps = (state) =>{
+  return {
+      questions: state.questions.questions,
+      isLoading: state.questions.isLoading,
+      fetchQtnError: state.questions.fetchQtnError,
+      isQtnsFetched:state.questions.isQtnsFetched
+      
+  }
+};
+
+export default connect(mapStateToProps,{fetchQuestions})(FarmerQuestions)

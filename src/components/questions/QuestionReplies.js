@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {View,Text,Platform,StatusBar,ScrollView} from 'react-native'
 import AntIcon from 'react-native-vector-icons/AntDesign'
-import {Content,Container,Header,Left,Right,Icon,Picker,Input} from 'native-base'
+import {Content,Container,Header,Left,Right,Icon,Picker,Input,Item,Form} from 'native-base'
 
 
 class QuestionReplies extends Component {
@@ -143,9 +143,17 @@ class QuestionReplies extends Component {
 
                     </Left>
                     <View style={{flex:1,flexDirection:'row',left:40,right:40,justifyContent:'space-evenly',position:'absolute'}}>                
-                        <Left style={{width:"80%"}}>
-                            <Input  placeholder="write reply...."/>  
-                        </Left>     
+                        <View style={{width:"90%"}}>
+                                <Item>
+                                    <Input 
+                                        multiline = {true}
+                                        style={{height: 40}}
+                                        autocorrect="on"
+                                        style={{flex:1}}
+                                        returnKeyType='none'
+                                        placeholder="write reply...."/>  
+                                </Item>
+                        </View>     
                     
                         <Right style={{flex:1}}>
                             <Icon name="md-images" style={{color:'grey'}} />
