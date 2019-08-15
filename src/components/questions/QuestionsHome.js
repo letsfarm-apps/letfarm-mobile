@@ -241,8 +241,6 @@ class QuestionsHome extends Component {
 
                 </Content>
 
-
-
             </Container>
         );
     }

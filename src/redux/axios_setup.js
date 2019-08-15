@@ -1,21 +1,8 @@
 import axios from 'axios';
-import AsyncStorage  from 'react-native'
-import { API_URL } from 'react-native-dotenv'
-token=async ()=>{
-    try{
-     const  ourToken = await AsyncStorage.getItem('accessToken');
-     return ourToken;
-    }catch{
-        return '';
-    }
-}
+import { API_URL } from 'react-native-dotenv';
 
-const ourToken = token();
-
-const axiosInstance = axios.create({
+let settings = {
     baseURL: API_URL,
-    // timeout: 1000,
-    headers: {Authorization:ourToken ? `Bearer ${ourToken}`:''}
-});
+};
 
-export default axiosInstance;
+export default axios.create(settings);
