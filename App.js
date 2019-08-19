@@ -6,7 +6,6 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import combineReducer from './src/redux/reducers/combineReducer';
-
 const store = createStore(combineReducer, applyMiddleware(thunk));
 
 const slides = [

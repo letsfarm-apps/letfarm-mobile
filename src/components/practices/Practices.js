@@ -1,14 +1,26 @@
 import React, { Component } from 'react'
 import { Font} from "expo";
-import {View,Text,Platform,StatusBar,Image,TouchableOpacity} from 'react-native'
+import {View,Platform,StatusBar,ActivityIndicator} from 'react-native'
 import AntIcon from 'react-native-vector-icons/AntDesign'
-import {Card,CardItem,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
-import {withNavigation} from 'react-navigation'
+import {Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
+import PracticesCard from './PracticesCard'
+import { connect } from "react-redux";
+import {fetchPractices} from '../../redux/actions/practice';
+
+
 class Practices extends Component {
     state = {
         fontLoaded: false,
-        title:'Practices'
+        title:'Practices',
+        practices:[]
       }
+
+
+      componentDidMount(){
+        this.fetchPractices();
+      }
+
+
     async componentWillMount() {
         await Font.loadAsync({
           Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -18,7 +30,24 @@ class Practices extends Component {
 
       }
 
+      fetchPractices = async () =>{
+        await this.props.fetchPractices();
+        if (this.props.isPracticesFetched){
+            this.setState({practices:this.props.practices})
+        }
+
+        };
+
+      renderPractices(){
+        return  this.state.practices.map((practice)=>(
+
+            <PracticesCard  navigation={this.props.navigation} key={practice.id} singlePractice={practice} />
+            ));
+
+      }
+
     render() {
+        const {isLoading} =this.props
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
@@ -46,74 +75,15 @@ class Practices extends Component {
 
                 </View>
                 <Content style={{backgroundColor:'#f3f5f7'}}>
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('PracticeDetails')}>
-                         <Card style={{marginLeft:5,marginRight:5}}>
-                            <View style={{paddingLeft:7,paddingTop:5}}>
-
-                                  <Text style={{fontWeight:'500',fontSize:16}}>Feeding</Text>
-
-                              </View>
-                            <CardItem style={{flexDirection:'column',flex:1}}>
-
-                                <View style={{flex:1,flexDirection:'row'}}>
-                                    <Image style={{borderRadius:9,width:90,height:90,resizeMode:'cover'}} source={require('../../../assets/feed.jpg')} />
-                                    <Right style={{flex:1,alignItems:'flex-start',height:90,paddingHorizontal:9}}>
-
-                                            <Text style={{flexShrink:1,flexWrap:'wrap'}}>The best way to feed your Animals</Text>
-
-
-                                    </Right>
-
-                            </View>
-
-                            </CardItem>
-                        </Card>
-
-                    </TouchableOpacity>
-
-
-                        <Card style={{marginLeft:5,marginRight:5,marginTop:0}}>
-                            <View style={{paddingLeft:7,paddingTop:5}}>
-
-                                  <Text style={{fontWeight:'500',fontSize:16}}>Breeding</Text>
-
-                              </View>
-                            <CardItem style={{flexDirection:'column',flex:1}}>
-
-                                <View style={{flex:1,flexDirection:'row'}}>
-                                    <Image style={{borderRadius:9,width:90,height:90,resizeMode:'cover'}} source={require('../../../assets/breeding.jpg')} />
-                                    <Right style={{flex:1,alignItems:'flex-start',height:90,paddingHorizontal:9}}>
-
-                                            <Text style={{flexShrink:1,flexWrap:'wrap'}}>The best way to breed your Animals</Text>
-
-
-                                    </Right>
-
-                            </View>
-
-                            </CardItem>
-                        </Card>
-                        <Card style={{marginLeft:5,marginRight:5,marginTop:0}}>
-                            <View style={{paddingLeft:7,paddingTop:5}}>
-
-                                  <Text style={{fontWeight:'500',fontSize:16}}>Housing</Text>
-
-                              </View>
-                            <CardItem style={{flexDirection:'column',flex:1}}>
-
-                                <View style={{flex:1,flexDirection:'row'}}>
-                                    <Image style={{borderRadius:9,width:90,height:90,resizeMode:'cover'}} source={require('../../../assets/housing.jpg')} />
-                                    <Right style={{flex:1,alignItems:'flex-start',height:90,paddingHorizontal:9}}>
-
-                                            <Text style={{flexShrink:1,flexWrap:'wrap'}}>The best way to house your Animals</Text>
-
-
-                                    </Right>
-
-                            </View>
-
-                            </CardItem>
-                        </Card>
+                        {isLoading?
+                            <ActivityIndicator style={{marginTop:10}} />
+                        :
+                        <View>
+                            {this.renderPractices()}
+                        </View>
+                                
+                            
+                        }
 
 
                 </Content>
@@ -165,4 +135,14 @@ const styles={
     }
 }
 
-export default withNavigation(Practices)
+
+const mapStateToProps = (state) =>{
+    return {
+        practices: state.practices.practices,
+        isLoading: state.practices.isLoading,
+        fetchPracticesError: state.practices.fetchPracticesError,
+        isPracticesFetched:state.practices.isPracticesFetched
+  
+    }
+  };
+export default connect(mapStateToProps,{fetchPractices})(Practices)
