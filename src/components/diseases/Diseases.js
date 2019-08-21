@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { Font} from "expo";
-import {View,Text,Platform,StatusBar,TouchableOpacity} from 'react-native'
+import {View,Text,Platform,StatusBar,TouchableOpacity,ActivityIndicator} from 'react-native'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import {Card,Container,Header,Right,Left,Icon,Body,Title,Input,Content} from 'native-base'
+import DiseasesCard from './DiseasesCard'
+import { connect } from "react-redux";
+import {fetchDiseases} from '../../redux/actions/diseases';
+
 
 class Diseases extends Component {
     state = {
         fontLoaded: false,
-        title:'Diseases'
+        title:'Diseases',
+        diseases:[]
+      }
+
+      componentDidMount(){
+        this.fetchDiseases();
       }
       async componentWillMount() {
         await Font.loadAsync({
@@ -18,7 +27,26 @@ class Diseases extends Component {
         
       }
 
+      fetchDiseases = async () =>{
+            const id = this.props.navigation.getParam('id', 'NO-ID');
+            await this.props.fetchDiseases(id);
+            if (this.props.isDiseasesFetched){
+                this.setState({diseases:this.props.diseases})
+            }
+
+        };
+
+
+      renderDiseases(){
+        return  this.state.diseases.map((disease)=>(
+
+            <DiseasesCard  navigation={this.props.navigation} key={disease.id} singleDisease={disease} />
+            ));
+
+      }
+
     render() {
+        const {isLoading} =this.props
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
@@ -46,104 +74,16 @@ class Diseases extends Component {
                     
                 </View>
                 <Content>
-                    <Card style={{marginLeft:5,marginRight:5}}>
-                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('DiseaseDetails')}>
-                            <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                                <View style={{paddingHorizontal:5}}>
-                                    <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                                </View>
-                                <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                    <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                                </View>
+                {isLoading?
+                            <ActivityIndicator style={{marginTop:10}} />
+                        :
+                        <Card style={{marginLeft:5,marginRight:5}}>
+                            {this.renderDiseases()}
+                        </Card>
                                 
-                            </View> 
-                        </TouchableOpacity>
-                       
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
                             
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        <View style={{flex:1,borderBottomWidth:0.5,borderBottomColor:'grey',paddingTop:10,paddingBottom:10,paddingLeft:5,paddingRight:5}}>
-                            <View style={{paddingHorizontal:5}}>
-                                <Text style={{fontWeight:'bold',flexWrap:'wrap'}}>Bloat</Text>
-                            </View>
-                            <View style={{paddingHorizontal:5,paddingTop:5}}>
-                                <Text style={{flexWrap:'wrap'}}>The incidence of bloat in cattle grazing legumes is well documented</Text>
-                            </View>
-                            
-                        </View>
-                        
-                        
-
-                    </Card>
+                        }
+                   
                 </Content>
 
             </Container>
@@ -194,5 +134,13 @@ const styles={
         })
     }
 }
-
-export default Diseases
+const mapStateToProps = (state) =>{
+    return {
+        diseases: state.diseases.diseases,
+        isLoading: state.diseases.isLoading,
+        fetchDiseasesError: state.diseases.fetchDiseasesError,
+        isDiseasesFetched:state.diseases.isDiseasesFetched
+  
+    }
+  };
+export default connect(mapStateToProps,{fetchDiseases}) (Diseases)

@@ -110,14 +110,17 @@ class QuestionsHome extends Component {
                         </View>
                         <CardItem style={{flexDirection:'row',justifyContent:'space-evenly',flex:1}}>
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                <View style={{flex:1,padding:10}}>
-                                    <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/pigs.jpg')} />
-                                    <View style={{flex:1,paddingTop:7}}>
-                                        <Text style={{textAlign:'center'}}>Pigs</Text>
+                                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Diseases',{id:1})}>
+                                    <View style={{flex:1,padding:10}}>
+                                        <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/pigs.jpg')} />
+                                        <View style={{flex:1,paddingTop:7}}>
+                                            <Text style={{textAlign:'center'}}>Pigs</Text>
+
+                                        </View>
 
                                     </View>
-
-                                </View>
+                                </TouchableOpacity>
+                                
                                 <View style={{flex:1,padding:10}}>
                                     <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/cows.jpg')} />
                                     <View style={{flex:1,paddingTop:7}}>
