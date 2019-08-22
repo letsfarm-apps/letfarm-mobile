@@ -1,10 +1,40 @@
 import React, { Component } from 'react'
-import {View,Text,Image,ScrollView,TouchableOpacity} from 'react-native'
+import {View,Text,Image,ScrollView,TouchableOpacity,ActivityIndicator} from 'react-native'
 import {Container,Content,Card,Icon,Input,CardItem,Left,Right} from 'native-base'
+import { connect } from "react-redux";
+import {fetchCategories} from '../../redux/actions/category';
+import CategoriesCard from './CategoriesCard'
+
 
 class QuestionsHome extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          categories:[]
+        };
+      }
+
+      componentDidMount(){
+        this.fetchAllCategories();
+      }
+
+      fetchAllCategories = async () =>{
+        await this.props.fetchCategories();
+        if (this.props.isCategoriesFetched){
+            this.setState({categories:this.props.categories})
+        }
+
+    };
+    renderCategories(){
+        return  this.state.categories.map((category)=>(
+
+            <CategoriesCard  navigation={this.props.navigation} key={category.id} singleCategory={category} />
+            ));
+
+      }
 
     render() {
+        const {isLoading} =this.props
         return (
             <Container>
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginLeft:5,marginRight:5,marginBottom:5}}>
@@ -110,58 +140,16 @@ class QuestionsHome extends Component {
                         </View>
                         <CardItem style={{flexDirection:'row',justifyContent:'space-evenly',flex:1}}>
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Diseases',{id:1})}>
-                                    <View style={{flex:1,padding:10}}>
-                                        <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/pigs.jpg')} />
-                                        <View style={{flex:1,paddingTop:7}}>
-                                            <Text style={{textAlign:'center'}}>Pigs</Text>
-
-                                        </View>
-
-                                    </View>
-                                </TouchableOpacity>
+                            {isLoading?
+                                <View style={{marginTop:10,alignItems:'center',justifyContent:'center'}}>
+                                    <ActivityIndicator  />
+                                </View>
                                 
-                                <View style={{flex:1,padding:10}}>
-                                    <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/cows.jpg')} />
-                                    <View style={{flex:1,paddingTop:7}}>
-                                        <Text style={{textAlign:'center'}}>Cows</Text>
-
-                                    </View>
-
+                            :
+                                <View style={{marginLeft:5,marginRight:5,flexDirection:'row'}}>
+                                    {this.renderCategories()}
                                 </View>
-                                <View style={{flex:1,padding:10}}>
-                                    <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/cash.jpg')} />
-                                    <View style={{flex:1,paddingTop:7}}>
-                                        <Text style={{textAlign:'center'}}>Cash Crops</Text>
-
-                                    </View>
-
-                                </View>
-                                <View style={{flex:1,padding:10}}>
-                                    <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/rabbits.jpg')} />
-                                    <View style={{flex:1,paddingTop:7}}>
-                                        <Text style={{textAlign:'center'}}>Rabbits</Text>
-
-                                    </View>
-
-                                </View>
-                                <View style={{flex:1,padding:10}}>
-                                    <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/poultry.jpg')} />
-                                    <View style={{flex:1,paddingTop:7}}>
-                                        <Text style={{textAlign:'center'}}>poultry</Text>
-
-                                    </View>
-
-                                </View>
-                                <View style={{flex:1,padding:10}}>
-                                    <Image style={{borderRadius:50,width:100,height:100,resizeMode:'cover'}} source={require('../../../assets/Goats.jpg')} />
-                                    <View style={{flex:1,paddingTop:7}}>
-                                        <Text style={{textAlign:'center'}}>Goats</Text>
-
-                                    </View>
-
-                                </View>
-
+                            }
 
                            </ScrollView>
                         </CardItem>
@@ -248,5 +236,14 @@ class QuestionsHome extends Component {
         );
     }
 }
+const mapStateToProps = (state) =>{
+    return {
+        categories: state.categories.categories,
+        isLoading: state.categories.isLoading,
+        fetchCategoriesError: state.categories.fetchCategoriesError,
+        isCategoriesFetched:state.categories.isCategoriesFetched
+  
+    }
+  };
 
-export default QuestionsHome
+export default connect(mapStateToProps,{fetchCategories})(QuestionsHome)
