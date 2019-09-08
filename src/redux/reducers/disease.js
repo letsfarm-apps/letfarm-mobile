@@ -1,4 +1,4 @@
-import {LOADING,FETCH_DISEASES,FETCH_DISEASES_ERROR} from "../types";
+import {LOADING,FETCH_DISEASES,FETCH_DISEASES_ERROR,FETCH_DISEASE_DETAILS,FETCH_DISEASE_DETAILS_ERROR} from "../types";
 
 let initialState = {
     
@@ -6,6 +6,9 @@ let initialState = {
     fetchDiseasesError:"",
     isDiseasesFetched:false,
     isLoading: false,
+    disease:{},
+    fetchDiseaseDetailsError:"",
+    isDiseaseDetailsFetched:false
 };
 
 
@@ -26,7 +29,18 @@ const diseases=(state=initialState,action)=>{
             return {
                 ...state,
                 fetchDiseasesError:action.payload
-            }
+            };
+        case FETCH_DISEASE_DETAILS:
+            return {
+                ...state,
+                disease:action.payload,
+                isDiseaseDetailsFetched:true
+            };
+        case FETCH_DISEASE_DETAILS_ERROR:
+            return {
+                ...state,
+                fetchDiseaseDetailsError:action.payload
+            };
         default:
             return state;
     }

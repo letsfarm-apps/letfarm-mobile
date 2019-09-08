@@ -1,11 +1,33 @@
 import React, { Component } from 'react'
-import {View,Text,Platform,StatusBar} from 'react-native'
+import {View,Text,Platform,StatusBar,ActivityIndicator} from 'react-native'
+import { connect } from "react-redux";
+import {fetchDiseaseDetails} from '../../redux/actions/diseases';
 import {Content,Container,Header,Left,Icon,Right} from 'native-base'
 
 class DiseaseDetails extends Component {
-   
+    constructor(props) {
+        super(props);
+        this.state = {
+          disease:{}
+        };
+      }
+
+      componentDidMount(){
+        this.fetchDisease();
+      }
+
+      fetchDisease = async () =>{
+        const id = this.props.navigation.getParam('id', 'NO-ID');
+        await this.props.fetchDiseaseDetails(id);
+        if (this.props.isDiseaseDetailsFetched){
+            this.setState({disease:this.props.disease})
+        }
+
+    }
     render() {
-        const { goBack } = this.props.navigation;
+        const {id,title,description,signs,symptoms,treatment}=this.state.disease;
+        const {isLoading} =this.props
+        
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
@@ -18,37 +40,43 @@ class DiseaseDetails extends Component {
 
                     </View>
                 </Header>
+                {isLoading?
+                    <View style={{marginTop:10,alignItems:'center',justifyContent:'center'}}>
+                        <ActivityIndicator  />
+                    </View>
+
+                :
                 <Content>
-                    <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
-                        <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>Bloat</Text>
-                        <Text style={{flexWrap:'wrap'}}>
-                            Sed ut perspiciatis unde omnis iste natus error 
-                            sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                            inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                        </Text>
-                    </View>
-                    <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
-                        <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>Prevention</Text>
-                        <Text style={{flexWrap:'wrap'}}>
-                            Sed ut perspiciatis unde omnis iste natus error 
-                            sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                            inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                            
-                        </Text>
-                    </View>
-                    <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
-                        <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>Symptoms</Text>
-                        <Text style={{flexWrap:'wrap'}}>
-                            Sed ut perspiciatis unde omnis iste natus error 
-                            sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                            inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
-                            sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                        </Text>
-                    </View>
-                </Content>
+                        <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
+                            <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>{title}</Text>
+                            <Text style={{flexWrap:'wrap'}}>
+                                {description}
+                            </Text>
+                        </View>
+                        <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
+                            <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>Signs</Text>
+                            <Text style={{flexWrap:'wrap'}}>
+                               {signs}
+                                
+                            </Text>
+                        </View>
+                        <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
+                            <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>Symptoms</Text>
+                            <Text style={{flexWrap:'wrap'}}>
+                               {symptoms}
+                                
+                            </Text>
+                        </View>
+                        <View style={{paddingLeft:5,paddingRight:10,paddingTop:10}}>
+                            <Text style={{fontWeight:'bold',fontSize:18,paddingBottom:5}}>Treatment</Text>
+                            <Text style={{flexWrap:'wrap'}}>
+                                {treatment}
+                            </Text>
+                        </View>
+                    </Content>
+
+                }
+                
             </Container>
         )
     }
@@ -83,5 +111,13 @@ const styles={
         })
     }
 }
-
-export default DiseaseDetails
+const mapStateToProps = (state) =>{
+    return {
+        disease: state.diseases.disease,
+        isLoading: state.diseases.isLoading,
+        fetchDiseaseDetailsError: state.diseases.fetchDiseaseDetailsError,
+        isDiseaseDetailsFetched: state.diseases.isDiseaseDetailsFetched
+  
+    }
+  };
+export default connect(mapStateToProps,{fetchDiseaseDetails})(DiseaseDetails)
