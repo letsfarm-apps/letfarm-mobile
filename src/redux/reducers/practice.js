@@ -1,4 +1,4 @@
-import {LOADING, FETCH_PRACTICES,FETCH_PRACTICES_ERROR} from "../types";
+import {LOADING, FETCH_PRACTICES,FETCH_PRACTICES_ERROR,FETCH_PRACTICE_DETAILS,FETCH_PRACTICE_DETAILS_ERROR} from "../types";
 
 let initialState = {
     
@@ -6,6 +6,9 @@ let initialState = {
     fetchPracticesError:"",
     isPracticesFetched:false,
     isLoading: false,
+    practice:{},
+    fetchPracticeDetailsError:"",
+    isPracticeDetailsFetched:false,
 };
 
 
@@ -26,6 +29,17 @@ const practices=(state=initialState,action)=>{
             return {
                 ...state,
                 fetchPracticesError:action.payload
+            }
+        case FETCH_PRACTICE_DETAILS:
+            return {
+                ...state,
+                practice:action.payload,
+                isPracticeDetailsFetched:true
+            };
+        case FETCH_PRACTICE_DETAILS_ERROR:
+            return {
+                ...state,
+                fetchPracticeDetailsError:action.payload
             }
         default:
             return state;
