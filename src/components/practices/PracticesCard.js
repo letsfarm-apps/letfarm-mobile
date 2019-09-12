@@ -5,9 +5,9 @@ import {Card,CardItem,Right} from 'native-base'
 class SettingsScreen extends Component {
    
     render() {
-        const {title,description}=this.props.singlePractice;
+        const {id,title,description}=this.props.singlePractice;
         return (
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('PracticeDetails')}>
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('PracticeDetails',{id:id})}>
                     <Card style={{marginLeft:5,marginRight:5}}>
                     <View style={{paddingLeft:7,paddingTop:5}}>
 
