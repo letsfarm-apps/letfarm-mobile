@@ -7,18 +7,14 @@ class QuestionCard extends Component {
     constructor(props){
         super(props);
     }
-    handlePress() {
-        this.props.navigation.dispatch(
-            NavigationActions.navigate({ routeName: "QuestionReplies" })
-           );
-      }
+  
 
 
     render() {
-        const {body,title,owner}=this.props.singleQuestion;
+        const {id,body,title,owner}=this.props.singleQuestion;
 
         return (
-            <TouchableOpacity onPress={()=> this.handlePress()}>
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('QuestionReplies',{id:id})}>
                 <CardItem style={{flexDirection:'row'}}>
                     <View style={{width:"15%"}}>
                         <Text>20+</Text>
