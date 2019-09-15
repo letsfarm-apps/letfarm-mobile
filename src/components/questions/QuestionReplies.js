@@ -1,23 +1,90 @@
 import React, { Component } from 'react'
-import {View,Text,Platform,StatusBar,ScrollView} from 'react-native'
+import {View,Text,Platform,StatusBar,ToastAndroid,ActivityIndicator} from 'react-native'
 import AntIcon from 'react-native-vector-icons/AntDesign'
 import {Content,Container,Header,Left,Right,Icon,Picker,Input,Item,Form} from 'native-base'
+import { connect } from "react-redux";
+import {fetchQuestionDetails,fetchQuestionReplies,postQuestionReply} from '../../redux/actions/question';
+import Spinner from 'react-native-loading-spinner-overlay';
+import RepliesCard from './RepliesCard'
+
 
 
 class QuestionReplies extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          selected: "key1"
+        state = {
+          selected: "key1",
+          question:{},
+          reply:{},
+          replies:[],
+          body:""
       }
-    }
+    
     onValueChange(value) {
         this.setState({
           selected: value
         });
       }
+
+      componentDidMount(){
+        this.fetchQuestion();
+        this.fetchReplies();
+      }
+
+      fetchQuestion = async () =>{
+        const id = this.props.navigation.getParam('id', 'NO-ID');
+        await this.props.fetchQuestionDetails(id);
+        this.setState({question:this.props.question});
+    }
+
+    fetchReplies = async () =>{
+        const id = this.props.navigation.getParam('id', 'NO-ID');
+        await this.props.fetchQuestionReplies(id);
+        if (this.props.isQtnRepliesFetched){
+            this.setState({replies:this.props.reply.answers})
+        }
+
+  };
+  renderReplies(){
+    return  this.state.replies.map((reply)=>(
+
+        <RepliesCard  navigation={this.props.navigation} key={reply.id} reply={reply} />
+        ));
+
+  };
+
+  postReply = async () =>{
+    const {body} = this.state;
+    const id = this.props.navigation.getParam('id', 'NO-ID');
+    const data={
+        id,
+        body
+    };
+
+    if(body===""){
+        ToastAndroid.showWithGravityAndOffset(
+            'Please enter reply body!',
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM,
+            25,
+            50,
+          );
+    }else{
+        await this.props.postQuestionReply(data);
+        if (this.props.isReplyPosted){
+            ToastAndroid.showWithGravity(
+                'Reply posted!!',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER,
+              );
+            this.fetchReplies();
+        }
+    }
+  };
    
     render() {
+        const {id,title,body,owner}=this.state.question;
+        
+        const {isLoading,isRepliesLoading} =this.props;
+       
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
@@ -30,53 +97,62 @@ class QuestionReplies extends Component {
 
                     </View>
                 </Header>
-                <View style={{flexDirection:'row',paddingTop:5,paddingHorizontal:5,height:"20%"}}>
-                    <View style={{width:"20%",margin:3,justifyContent:'flex-start'}}>
-                        <AntIcon name="up"  color="grey" size={22}/>
-                            <Text style={{fontSize:12}}>+13</Text>
-                        <AntIcon name="down"  color="grey" size={22}/>
-                    </View>
-                    <View style={{flex:1}}>
-                        
-                            <Text style={{flexShrink:1,flexWrap:'wrap'}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit </Text>
-                            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                <View style={{backgroundColor:'#2980b9',borderRadius:16, width:90,height:30,alignItems:'center',justifyContent:'center',marginTop:5}}>
-                                    <Text style={{color:'white'}}>Disease</Text>
-                                </View>
+                <View style={{marginTop:10}}>
+                        <Spinner
+                            //visibility of Overlay Loading Spinner
+                                visible={isLoading}
+                                //Text with the Spinner
+                                textContent={'Loading...'}
+                                //Text style of the Spinner Text
+                                textStyle={styles.spinnerTextStyle}
+                            />
+                        <View style={{flexDirection:'row',paddingTop:5,paddingHorizontal:5,height:"20%"}}>
+                            <View style={{width:"20%",margin:3,justifyContent:'flex-start'}}>
+                                <AntIcon name="up"  color="grey" size={22}/>
+                                    <Text style={{fontSize:12}}>+13</Text>
+                                <AntIcon name="down"  color="grey" size={22}/>
+                            </View>
+                            <View style={{flex:1}}>
                                 
-                            </View>
-                            <Text style={{flexShrink:1,flexWrap:'wrap',paddingTop:5}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit </Text>
-                        
+                                    <Text style={{flexShrink:1,flexWrap:'wrap'}}> {title} </Text>
+                                    
+                                    <Text style={{flexShrink:1,flexWrap:'wrap',paddingTop:5}}> {body} </Text>
+                                
 
+                            </View>
+
+                        </View>
+                        <View style={{paddingTop:5,height:"15%",alignItems:'flex-end'}}>
+
+                            <Right style={{flexDirection:"row",position: 'absolute', right: 2}}>
+                                <View>
+                                    <View style={{paddingTop:5}}>
+                                        <Text>wamozo</Text>
+                                    </View>
+                                    
+                                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                                        <View style={{justifyContent:'flex-start'}}> 
+                                            <Text> 11 views</Text>
+                                        </View>
+                                        <View style={{justifyContent:'flex-end',marginLeft:5}}>
+                                            <Text>12 hrs</Text>
+                                        </View>
+
+                                    </View>
+
+                                </View>
+                                <View style={{marginLeft:5}}>
+                                    <Icon name="md-contact" style={{color:'grey'}} />
+                                </View>
+
+                            </Right>
+
+                        </View>
                     </View>
 
-                </View>
-                <View style={{paddingTop:5,height:"15%",alignItems:'flex-end'}}>
-
-                    <Right style={{flexDirection:"row",position: 'absolute', right: 2}}>
-                        <View>
-                            <View style={{paddingTop:5}}>
-                                <Text>Tony Mike</Text>
-                            </View>
-                            
-                            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                <View style={{justifyContent:'flex-start'}}> 
-                                    <Text> 11 views</Text>
-                                </View>
-                                <View style={{justifyContent:'flex-end',marginLeft:5}}>
-                                    <Text>12 hrs</Text>
-                                </View>
-
-                            </View>
-
-                        </View>
-                        <View style={{marginLeft:5}}>
-                            <Icon name="md-contact" style={{color:'grey'}} />
-                        </View>
-
-                    </Right>
-
-                </View>
+    
+                
+                
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginBottom:5}}>
                     <View style={{flex:1,justifyContent:'center'}}>                
                         <Text style={{paddingLeft:5}}>9 Answers</Text>                       
@@ -104,31 +180,16 @@ class QuestionReplies extends Component {
                             <AntIcon name="down"  color="grey" size={22}/>
                         </View>
                         <Content style={{flex:1}}>
-                            
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                                <Text style={{flexShrink:1,flexWrap:'wrap',padding:5}}> 
-                                ipsum dolor sit amet, consectetur adipiscing elit
-                                </Text>
-                        
+                            {isRepliesLoading?
+                                <View style={{marginTop:10,alignItems:'center',justifyContent:'center'}}>
+                                    <ActivityIndicator  />
+                                </View>
+                            :
+                                <View>
+                                    {this.renderReplies()}
+                                </View>
                                 
-                                
+                            }
                             
 
                         </Content>
@@ -151,6 +212,8 @@ class QuestionReplies extends Component {
                                         autocorrect="on"
                                         style={{flex:1}}
                                         returnKeyType='none'
+                                        value={this.state.body} name='body'
+                                        onChangeText={(body=>this.setState({body:body}))}
                                         placeholder="write reply...."/>  
                                 </Item>
                         </View>     
@@ -160,7 +223,7 @@ class QuestionReplies extends Component {
                         </Right>                     
                     </View>
                     <Right style={{paddingRight:5}}>
-                        <Icon name="md-send" style={{color:'grey'}} />
+                        <Icon name="md-send" style={{color:'grey'}} onPress={this.postReply} />
                     </Right>
                 </View>
             </Container>
@@ -214,6 +277,9 @@ const styles={
         paddingHorizontal:5
       
     },
+    spinnerTextStyle: {
+        color: '#FFF',
+      },
     footer:{
         height:"10%",
         flexDirection:'row',
@@ -231,4 +297,28 @@ const styles={
     }
 }
 
-export default QuestionReplies
+
+
+const mapStateToProps = (state) =>{
+    return {
+        question: state.questions.singleQuestion,
+        reply: state.questions.reply,
+        isLoading: state.questions.isLoading,
+        isRepliesLoading: state.questions.isRepliesLoading,
+        fetchQtnDetailsError: state.questions.fetchQtnDetailsError,
+        isQtnRepliesFetched:state.questions.isQtnRepliesFetched,
+        fetchQtnRepliesError: state.questions.fetchQtnRepliesError,
+        isReplyPosted:state.questions.isReplyPosted,
+        postReplyError:state.questions.postReplyError
+  
+    }
+  };
+
+  const mapDispatchToProps = {
+    fetchQuestionDetails,
+    fetchQuestionReplies,
+    postQuestionReply
+ 
+ };
+
+export default  connect(mapStateToProps,mapDispatchToProps)(QuestionReplies)
