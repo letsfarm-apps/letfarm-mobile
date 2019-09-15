@@ -17,7 +17,7 @@ class QuestionReplies extends Component {
           replies:[],
           body:""
       }
-    
+
     onValueChange(value) {
         this.setState({
           selected: value
@@ -68,29 +68,30 @@ class QuestionReplies extends Component {
             50,
           );
     }else{
+
         await this.props.postQuestionReply(data);
         if (this.props.isReplyPosted){
-            ToastAndroid.showWithGravity(
-                'Reply posted!!',
-                ToastAndroid.SHORT,
-                ToastAndroid.CENTER,
-              );
-            this.fetchReplies();
+            // ToastAndroid.showWithGravity(
+            //     'Reply posted!!',
+            //     ToastAndroid.SHORT,
+            //     ToastAndroid.CENTER,
+            //   );
+            await this.fetchReplies();
         }
     }
   };
-   
+
     render() {
         const {id,title,body,owner}=this.state.question;
-        
+
         const {isLoading,isRepliesLoading} =this.props;
-       
+
         return (
             <Container>
                 <Header style={[styles.headerStyle,styles.androidHeader]}>
                     <Left>
                         <AntIcon onPress={()=>this.props.navigation.navigate("App")} name="left"  color="white" size={22}/>
-                        
+
                     </Left>
                     <View style={{flex:1,marginLeft:5,justifyContent:'center'}}>
                         <Text style={{color:'white'}}>Q&A discussions</Text>
@@ -113,11 +114,11 @@ class QuestionReplies extends Component {
                                 <AntIcon name="down"  color="grey" size={22}/>
                             </View>
                             <View style={{flex:1}}>
-                                
+
                                     <Text style={{flexShrink:1,flexWrap:'wrap'}}> {title} </Text>
-                                    
+
                                     <Text style={{flexShrink:1,flexWrap:'wrap',paddingTop:5}}> {body} </Text>
-                                
+
 
                             </View>
 
@@ -127,11 +128,11 @@ class QuestionReplies extends Component {
                             <Right style={{flexDirection:"row",position: 'absolute', right: 2}}>
                                 <View>
                                     <View style={{paddingTop:5}}>
-                                        <Text>wamozo</Text>
+                                        <Text>{owner? owner.name:''}</Text>
                                     </View>
-                                    
+
                                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                        <View style={{justifyContent:'flex-start'}}> 
+                                        <View style={{justifyContent:'flex-start'}}>
                                             <Text> 11 views</Text>
                                         </View>
                                         <View style={{justifyContent:'flex-end',marginLeft:5}}>
@@ -150,12 +151,12 @@ class QuestionReplies extends Component {
                         </View>
                     </View>
 
-    
-                
-                
+
+
+
                 <View style={{height:"10%",marginTop:5,flexDirection:'row', backgroundColor:'#f3f5f7',justifyContent:'space-between',marginBottom:5}}>
-                    <View style={{flex:1,justifyContent:'center'}}>                
-                        <Text style={{paddingLeft:5}}>9 Answers</Text>                       
+                    <View style={{flex:1,justifyContent:'center'}}>
+                        <Text style={{paddingLeft:5}}>9 Answers</Text>
                     </View>
                     <View style={{width:"30%",flexDirection:'row',paddingRight:5}}>
                         <Picker
@@ -169,8 +170,8 @@ class QuestionReplies extends Component {
                             <Picker.Item label="Recent" value="key2" />
                         </Picker>
                     </View>
-                    
-                    
+
+
                 </View>
                 <View  style={{flex:1}}>
                     <View style={{flexDirection:'row',paddingTop:5,paddingHorizontal:5}}>
@@ -188,14 +189,14 @@ class QuestionReplies extends Component {
                                 <View>
                                     {this.renderReplies()}
                                 </View>
-                                
+
                             }
-                            
+
 
                         </Content>
 
                     </View>
-                
+
 
                 </View>
                 <View style={styles.footer}>
@@ -203,10 +204,10 @@ class QuestionReplies extends Component {
                         <Icon name="md-contact" style={{color:'grey'}} />
 
                     </Left>
-                    <View style={{flex:1,flexDirection:'row',left:40,right:40,justifyContent:'space-evenly',position:'absolute'}}>                
+                    <View style={{flex:1,flexDirection:'row',left:40,right:40,justifyContent:'space-evenly',position:'absolute'}}>
                         <View style={{width:"90%"}}>
                                 <Item>
-                                    <Input 
+                                    <Input
                                         multiline = {true}
                                         style={{height: 40}}
                                         autocorrect="on"
@@ -214,13 +215,13 @@ class QuestionReplies extends Component {
                                         returnKeyType='none'
                                         value={this.state.body} name='body'
                                         onChangeText={(body=>this.setState({body:body}))}
-                                        placeholder="write reply...."/>  
+                                        placeholder="write reply...."/>
                                 </Item>
-                        </View>     
-                    
+                        </View>
+
                         <Right style={{flex:1}}>
                             <Icon name="md-images" style={{color:'grey'}} />
-                        </Right>                     
+                        </Right>
                     </View>
                     <Right style={{paddingRight:5}}>
                         <Icon name="md-send" style={{color:'grey'}} onPress={this.postReply} />
@@ -260,7 +261,7 @@ const styles={
         color:'white',
         marginRight: 10
     },
-    
+
     rightIcon:{
         color:"#fff"
 
@@ -275,7 +276,7 @@ const styles={
         flexDirection:'row',
         alignItems:'center',
         paddingHorizontal:5
-      
+
     },
     spinnerTextStyle: {
         color: '#FFF',
@@ -310,7 +311,7 @@ const mapStateToProps = (state) =>{
         fetchQtnRepliesError: state.questions.fetchQtnRepliesError,
         isReplyPosted:state.questions.isReplyPosted,
         postReplyError:state.questions.postReplyError
-  
+
     }
   };
 
@@ -318,7 +319,7 @@ const mapStateToProps = (state) =>{
     fetchQuestionDetails,
     fetchQuestionReplies,
     postQuestionReply
- 
+
  };
 
 export default  connect(mapStateToProps,mapDispatchToProps)(QuestionReplies)

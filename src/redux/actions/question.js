@@ -75,17 +75,20 @@ const fetchQuestionReplies=(id)=> async (dispatch)=> {
             dispatch(action(LOADING_REPLIES, false));
         });
 };
+
 const postQuestionReply=(payload)=> async (dispatch)=> {
     dispatch(action(LOADING, true));
     const token = await AsyncStorage.getItem('accessToken');
-    return await axios.post(`${API_URL}/answers/${payload.id}`, payload.body,
+    return await axios.post(`${API_URL}/answers/${payload.id}`,
+        {
+            body:payload.body
+        },
         {headers: {Authorization:`Bearer ${token}`}}
         )
         .then(response => {
                 dispatch(action(POST_QUESTION_REPLY, response.data.answer));
             dispatch(action(LOADING, false))
         }).catch((error) => {
-            console.log(error)
             dispatch(action(POST_QUESTION_REPLY_ERROR, 'failed to post question reply, check your network connection'));
             dispatch(action(LOADING, false));
         });
