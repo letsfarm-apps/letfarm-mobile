@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import {fetchQuestionDetails,fetchQuestionReplies,postQuestionReply} from '../../redux/actions/question';
 import Spinner from 'react-native-loading-spinner-overlay';
 import RepliesCard from './RepliesCard'
+import moment from 'moment'
 
 
 
@@ -39,7 +40,7 @@ class QuestionReplies extends Component {
         const id = this.props.navigation.getParam('id', 'NO-ID');
         await this.props.fetchQuestionReplies(id);
         if (this.props.isQtnRepliesFetched){
-            this.setState({replies:this.props.reply.answers})
+            this.setState({replies:this.props.replies})
         }
 
   };
@@ -60,6 +61,7 @@ class QuestionReplies extends Component {
     };
 
     if(body===""){
+        this.state.body='';
         ToastAndroid.showWithGravityAndOffset(
             'Please enter reply body!',
             ToastAndroid.LONG,
@@ -68,7 +70,7 @@ class QuestionReplies extends Component {
             50,
           );
     }else{
-
+        this.state.body='';
         await this.props.postQuestionReply(data);
         if (this.props.isReplyPosted){
             // ToastAndroid.showWithGravity(
@@ -76,13 +78,14 @@ class QuestionReplies extends Component {
             //     ToastAndroid.SHORT,
             //     ToastAndroid.CENTER,
             //   );
+           
             await this.fetchReplies();
         }
     }
   };
 
     render() {
-        const {id,title,body,owner}=this.state.question;
+        const {id,title,body,owner,createdAt}=this.state.question;
 
         const {isLoading,isRepliesLoading} =this.props;
 
@@ -136,7 +139,7 @@ class QuestionReplies extends Component {
                                             <Text> 11 views</Text>
                                         </View>
                                         <View style={{justifyContent:'flex-end',marginLeft:5}}>
-                                            <Text>12 hrs</Text>
+                                            <Text>{createdAt?  moment(createdAt, "YYYYMMDD").fromNow():''}</Text>
                                         </View>
 
                                     </View>
@@ -304,6 +307,7 @@ const mapStateToProps = (state) =>{
     return {
         question: state.questions.singleQuestion,
         reply: state.questions.reply,
+        replies:state.questions.replies,
         isLoading: state.questions.isLoading,
         isRepliesLoading: state.questions.isRepliesLoading,
         fetchQtnDetailsError: state.questions.fetchQtnDetailsError,

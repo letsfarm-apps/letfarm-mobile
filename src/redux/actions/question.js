@@ -66,8 +66,8 @@ const fetchQuestionReplies=(id)=> async (dispatch)=> {
     dispatch(action(LOADING_REPLIES, true));
     return await axiosInstance.get('/answers/'+id)
         .then(response => {
-            console.log(response.data)
-                dispatch(action(FETCH_QUESTION_REPLIES, response.data.question));
+            
+                dispatch(action(FETCH_QUESTION_REPLIES, response.data.answers));
                 dispatch(action(LOADING_REPLIES, false))
         }).catch((error) => {
             console.log(error)
@@ -89,6 +89,7 @@ const postQuestionReply=(payload)=> async (dispatch)=> {
                 dispatch(action(POST_QUESTION_REPLY, response.data.answer));
             dispatch(action(LOADING, false))
         }).catch((error) => {
+            console.log('error: ',error)
             dispatch(action(POST_QUESTION_REPLY_ERROR, 'failed to post question reply, check your network connection'));
             dispatch(action(LOADING, false));
         });

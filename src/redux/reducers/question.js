@@ -13,6 +13,7 @@ let initialState = {
     reply:{},
     fetchQtnError:"",
     postError:"",
+    replies:[],
     isPosted: false,
     isReplyPosted: false,
     postReplyError:"",
@@ -76,7 +77,7 @@ const questions=(state=initialState,action)=>{
             case FETCH_QUESTION_REPLIES:
                 return {
                     ...state,
-                    reply:action.payload,
+                    replies:action.payload,
                     isQtnRepliesFetched:true
                 };
         case FETCH_QUESTIONS_ERROR:

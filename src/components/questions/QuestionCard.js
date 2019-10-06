@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {View,Text,TouchableOpacity,StyleSheet} from 'react-native'
 import {CardItem,Icon} from 'native-base'
 import { NavigationActions} from 'react-navigation';
+import moment from 'moment'
 
 class QuestionCard extends Component {
     constructor(props){
@@ -11,7 +12,7 @@ class QuestionCard extends Component {
 
 
     render() {
-        const {id,body,title,owner}=this.props.singleQuestion;
+        const {id,body,title,owner,createdAt}=this.props.singleQuestion;
 
         return (
             <TouchableOpacity onPress={()=> this.props.navigation.navigate('QuestionReplies',{id:id})}>
@@ -39,14 +40,17 @@ class QuestionCard extends Component {
 
                             </View>
                             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                                    <Text style={{color:'blue', fontSize:12,marginLeft:0}}>
-                                    <Icon name="calendar" style={{color:'blue', fontSize:12}}/>{ }
-                                    11 weeks</Text>
+                                <View style={{flexDirection:'row'}}>
+                                     
+                                   <Text style={{color:'blue', fontSize:12}}>
+                                   <Icon name="calendar" style={{color:'blue', fontSize:12,margin:6}}/>{"  "}
+                                        {createdAt?  moment(createdAt, "YYYYMMDD").fromNow():''}
+                                    </Text>
+                                    
                                 </View>
                                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'flex-end'}}>
                                     <Text style={{marginLeft:0}}>
-                                    <Icon name="eye" style={{color:'grey',fontSize:12}}/>{ }
+                                    <Icon name="eye" style={{color:'grey',fontSize:12}}/>{" "}
                                     100</Text>
                                 </View>
 

@@ -6,9 +6,12 @@ class RepliesCard extends Component {
    
 
     render() {
-        const {body}=this.props.reply;
+        const {body,owner}=this.props.reply;
         return (
             <View style={{padding:5}}>
+                <Text style={{flexShrink:1,flexWrap:'wrap',fontWeight:'500'}}> 
+                     {owner.name}
+                </Text>
                 <Text style={{flexShrink:1,flexWrap:'wrap'}}> 
                      {body}
                 </Text>
